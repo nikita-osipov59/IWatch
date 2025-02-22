@@ -30,11 +30,11 @@ export const PrivateRoute = () => {
         <AsidePanel />
         <div className={style.box}>
           <div className={style.bar}>
+            <Search />
             <div className={style.content}>
-              <Search />
               <NotificationPanel />
+              <UserPanelExtended />
             </div>
-            <UserPanelExtended />
           </div>
           <Suspense
             fallback={
