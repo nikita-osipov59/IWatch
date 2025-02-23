@@ -9,6 +9,8 @@ interface User {
     photoURL?: string | null;
   }) => void;
   setEmail: (email: string) => void;
+  setName: (name: string) => void;
+  setPhotoURL: (photoURL: string) => void;
   setError: (error: string | null) => void;
   removeUser: () => void;
   isAuth: boolean;
@@ -38,6 +40,12 @@ export const getAuthStore = create<User>()(
       },
       setEmail: (email) => {
         set(() => ({ email: email }));
+      },
+      setName: (name) => {
+        set(() => ({ name: name }));
+      },
+      setPhotoURL: (photoURL) => {
+        set(() => ({ photoURL: photoURL }));
       },
       setError: (error) => {
         set(() => ({ error: error }));

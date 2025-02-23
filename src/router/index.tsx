@@ -14,6 +14,7 @@ const RegistrationPage = lazy(() => import("@/pages/RegistrationPage"));
 const SearchPage = lazy(() => import("@/pages/SearchPage"));
 const ProfilePage = lazy(() => import("@/pages/ProfilePage"));
 const SettingsPage = lazy(() => import("@/pages/SettingsPage"));
+const SettingsProfile = lazy(() => import("@/pages/SettingsProfile"));
 
 export const Router = () => {
   return (
@@ -23,7 +24,12 @@ export const Router = () => {
         <Route path={ROUTER_PATH.MOVIE + `/:id`} element={<MoviePage />} />
         <Route path={ROUTER_PATH.SEARCH} element={<SearchPage />} />
         <Route path={ROUTER_PATH.PROFILE + `/:id`} element={<ProfilePage />} />
-        <Route path={ROUTER_PATH.SETTINGS} element={<SettingsPage />} />
+        <Route path={ROUTER_PATH.SETTINGS} element={<SettingsPage />}>
+          <Route
+            path={ROUTER_PATH.SETTINGS_PROFILE}
+            element={<SettingsProfile />}
+          />
+        </Route>
       </Route>
       <Route path={ROUTER_PATH.REGISTRATION} element={<RegistrationPage />} />
       <Route path={ROUTER_PATH.AUTH} element={<AuthPage />} />

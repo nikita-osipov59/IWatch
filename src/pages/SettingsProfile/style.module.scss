@@ -1,0 +1,53 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.titleBox {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border);
+  .title {
+    font-size: $fontSize-medium;
+  }
+  .description {
+    color: var(--color-accent);
+  }
+}
+
+.box {
+  @include border;
+}
+.form {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 24px;
+  }
+  .input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    width: -webkit-fill-available;
+    @include border;
+    padding-left: 45px;
+    width: 100%;
+    &:focus-within {
+      border: 1px solid var(--color-focus);
+    }
+  }
+  .username,
+  .photoURL {
+    position: relative;
+    .username,
+    .photoURL {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      cursor: text;
+      color: var(--color-accent);
+      width: 22px;
+      height: 22px;
+    }
+  }
+}

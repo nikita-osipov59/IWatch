@@ -3,4 +3,6 @@
 
 .list {
   @include border;
+  display: flex;
+  gap: 15px;
 }

@@ -7,6 +7,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 import { ROUTER_PATH } from "@/router/PATH";
@@ -16,7 +17,7 @@ import { getAuthStore } from "@/store";
 export const AuthService = () => {
   const navigate = useNavigate();
 
-  // const user = auth.currentUser;
+  const user = auth.currentUser;
 
   const { email, setUser, setError, removeUser } = getAuthStore();
 
@@ -69,6 +70,18 @@ export const AuthService = () => {
       });
   };
 
+  const handleUpdateProfile = (name: string, photoURL?: string) => {
+    updateProfile(user!, {
+      displayName: name,
+      photoURL: photoURL,
+    }).catch((error) => {
+      setError(error.code);
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    });
+  };
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log(user);
@@ -84,6 +97,7 @@ export const AuthService = () => {
   };
 
   return {
+    handleUpdateProfile,
     handleRegistration,
     handleLogin,
     handleSignOut,
