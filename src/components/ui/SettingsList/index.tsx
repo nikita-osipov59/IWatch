@@ -9,7 +9,7 @@ export const SettingsList = () => {
     <ul className={style.list}>
       <li>
         <NavLinkBtn to={ROUTER_PATH.SETTINGS_PROFILE} variant="default">
-          Edit Profile
+          Profile
         </NavLinkBtn>
       </li>
     </ul>
