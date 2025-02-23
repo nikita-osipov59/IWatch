@@ -7,9 +7,9 @@
   .open {
     position: absolute;
     z-index: 3;
-    left: -148px;
+    right: 0;
     bottom: -245px;
-    width: 250px;
+    min-width: 250px;
     @include border;
     .list {
       display: flex;
