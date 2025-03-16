@@ -14,26 +14,30 @@ export const MovieSimilars = () => {
   const { data } = useGetQueryMovieById(id!);
 
   return (
-    <BorderPanel title="Similar movies">
-      <div className="overflowAuto">
-        <ul className={style.similarList}>
-          {data?.similarMovies?.map((item) => (
-            <li key={item.id}>
-              <Link
-                className={style.similarItem}
-                to={ROUTER_PATH.MOVIE + `/${item.id}`}
-              >
-                <img
-                  className={style.poster}
-                  src={item.poster.url}
-                  alt={item.name}
-                />
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </BorderPanel>
+    <>
+      {data?.similarMovies && data?.similarMovies?.length > 0 && (
+        <BorderPanel title="Similar movies">
+          <div className="overflowAuto">
+            <ul className={style.similarList}>
+              {data?.similarMovies?.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    className={style.similarItem}
+                    to={ROUTER_PATH.MOVIE + `/${item.id}`}
+                  >
+                    <img
+                      className={style.poster}
+                      src={item.poster.url}
+                      alt={item.name}
+                    />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </BorderPanel>
+      )}
+    </>
   );
 };
