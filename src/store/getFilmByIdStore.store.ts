@@ -25,6 +25,14 @@ interface SimilarMovie {
   length: number;
 }
 
+interface TrailersUrls {
+  url: string
+}
+
+interface Trailers {
+  trailers: TrailersUrls[];
+}
+
 interface Movie {
   id: number;
   name: string;
@@ -39,6 +47,7 @@ interface Movie {
   genres: Genre[];
   persons: Person[];
   similarMovies?: SimilarMovie[];
+  videos: Trailers;
 }
 
 export interface Data {

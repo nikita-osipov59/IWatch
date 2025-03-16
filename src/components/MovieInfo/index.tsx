@@ -1,4 +1,4 @@
-import { MovieCast, MovieInfoPanel, MovieSimilars } from "@/components/";
+import { MovieCast, MovieInfoPanel, MovieSimilars, MovieTrailer } from "@/components/";
 import { BorderPanel } from "@/components/ui";
 
 import style from "./style.module.scss";
@@ -24,6 +24,7 @@ export const MovieInfo = () => {
         <div className={style.column}>
           <BorderPanel title="Description">{data?.description}</BorderPanel>
           <MovieCast />
+          <MovieTrailer />
           {data?.similarMovies && data?.similarMovies?.length > 0 && (
             <MovieSimilars />
           )}
