@@ -27,6 +27,7 @@ export const Router = () => {
         <Route path={ROUTER_PATH.SETTINGS} element={<SettingsPage />}>
           <Route
             path={ROUTER_PATH.SETTINGS_PROFILE}
+            index
             element={<SettingsProfile />}
           />
         </Route>

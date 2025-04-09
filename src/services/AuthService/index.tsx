@@ -19,7 +19,15 @@ export const AuthService = () => {
 
   const user = auth.currentUser;
 
-  const { email, setUser, setError, removeUser } = getAuthStore();
+  const {
+    email,
+    setUser,
+    setError,
+    photoURL,
+    setName,
+    setPhotoURL,
+    removeUser,
+  } = getAuthStore();
 
   const handleLogin = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -70,16 +78,21 @@ export const AuthService = () => {
       });
   };
 
-  const handleUpdateProfile = (name: string, photoURL?: string) => {
+  const handleUpdateProfile = (formName: string, formPhotoURL: string) => {
     updateProfile(user!, {
-      displayName: name,
-      photoURL: photoURL,
-    }).catch((error) => {
-      setError(error.code);
-      setTimeout(() => {
-        setError(null);
-      }, 5000);
-    });
+      displayName: formName,
+      photoURL: formPhotoURL.length > 0 ? formPhotoURL: photoURL!,
+    })
+      .then(() => {
+        setName(user!.displayName!);
+        setPhotoURL(user!.photoURL!);
+      })
+      .catch((error) => {
+        setError(error.code);
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      });
   };
 
   onAuthStateChanged(auth, (user) => {

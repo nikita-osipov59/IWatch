@@ -10,7 +10,7 @@ import { AuthService } from "@/services";
 import style from "./style.module.scss";
 
 const SettingsProfile = () => {
-  const { error, setError, photoURL, name, setName, setPhotoURL } =
+  const { error, setError } =
     getAuthStore();
 
   const [formName, setFormName] = useState("");
@@ -19,7 +19,7 @@ const SettingsProfile = () => {
   const { handleUpdateProfile } = AuthService();
 
   const MIN_NAME_LENGTH = 2;
-  const MAX_NAME_LENGTH = 40;
+  const MAX_NAME_LENGTH = 30;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,10 +36,8 @@ const SettingsProfile = () => {
       }, 5000);
       return;
     }
-    // TODO: сделать проверку и сделать присваивание в then handleUpdateProfile
-    setName(formName);
-    setPhotoURL(formPhotoURL.length > 0 ? formPhotoURL : photoURL!);
-    handleUpdateProfile(name!, photoURL!);
+    
+    handleUpdateProfile(formName!, formPhotoURL!);
   };
 
   return (
@@ -47,7 +45,7 @@ const SettingsProfile = () => {
       <div className={style.titleBox}>
         <p className={style.title}>Edit profile</p>
         <p className={style.description}>
-          Manage your account settings and preferences
+          Manage your profile settings
         </p>
       </div>
       <form onSubmit={(e) => handleSubmit(e)} className={style.form}>
@@ -62,7 +60,6 @@ const SettingsProfile = () => {
               id="username-input"
               type="text"
               value={formName}
-              required
               onChange={(e) => setFormName(e.target.value)}
               placeholder="username"
             />
