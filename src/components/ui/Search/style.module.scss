@@ -5,6 +5,9 @@
   display: flex;
   width: fit-content;
   position: relative;
+  &:focus-within .submit {
+    border-left: 1px solid var(--color-focus);
+  }
   .search {
     width: fit-content;
     display: flex;
@@ -20,21 +23,20 @@
   .submit {
     position: absolute;
     padding: 15px;
-    top: 0px;
-    right: 0;
+    top: 1px;
+    right: 1px;
     border-radius: 0px 12px 12px 0px;
     border-left: 1px solid var(--color-border);
-    transition: 300ms;
+    transition: $transition-default;
     color: var(--color-accent);
-    height: 52px;
+    height: 51px;
     &:hover,
     &:focus-within {
       svg {
         color: var(--color-main);
       }
-    }
-    &:focus-within {
       background-color: var(--color-focus);
+      border-left: 1px solid var(--color-border);
     }
   }
 }
