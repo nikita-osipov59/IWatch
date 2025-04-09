@@ -18,7 +18,7 @@ export const Search = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue) {
-      navigate(ROUTER_PATH.SEARCH);
+      navigate(`${ROUTER_PATH.SEARCH}/${inputValue}`);
       mutate();
     }
   };

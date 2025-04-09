@@ -22,7 +22,7 @@ export const Router = () => {
       <Route element={<PrivateRoute />}>
         <Route path={ROUTER_PATH.HOME} element={<HomePage />} />
         <Route path={ROUTER_PATH.MOVIE + `/:id`} element={<MoviePage />} />
-        <Route path={ROUTER_PATH.SEARCH} element={<SearchPage />} />
+        <Route path={ROUTER_PATH.SEARCH + `/:query`} element={<SearchPage />} />
         <Route path={ROUTER_PATH.PROFILE + `/:id`} element={<ProfilePage />} />
         <Route path={ROUTER_PATH.SETTINGS} element={<SettingsPage />}>
           <Route
