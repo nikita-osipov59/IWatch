@@ -1,4 +1,9 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Mail } from "lucide-react";
+
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { getAuthStore } from "@/store";
 
@@ -10,17 +15,32 @@ import { NavLinkBtn } from "@/components/ui";
 
 import style from "./style.module.scss";
 
+const schema = z.object({
+  email: z.string().email().min(2).max(40),
+});
+
+type RecoveryForm = z.infer<typeof schema>;
+
 export const FormRecoveryPassword = () => {
-  const { error, email, setEmail } = getAuthStore();
+  const { email, setEmail } = getAuthStore();
 
   const { handleResetPassword } = AuthService();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RecoveryForm>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<RecoveryForm> = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    handleResetPassword();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.wrapper}>
+    <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
       <div className={style.welcomeBox}>
         <p className={style.welcomeTitle}>
           Welcome to <span>IWatch</span>you can do more
@@ -38,6 +58,7 @@ export const FormRecoveryPassword = () => {
             </label>
             <input
               className={style.input}
+              {...register("email")}
               id="mail-input"
               type="text"
               value={email}
@@ -45,15 +66,10 @@ export const FormRecoveryPassword = () => {
               placeholder="example@gmail.ru"
             />
           </div>
-          {error && <span className="error">{error}</span>}
+          {errors && <span className="error">{errors.email?.message}</span>}
         </div>
-        <Button
-          onClick={handleResetPassword}
-          width="100%"
-          variant="primary"
-          type="submit"
-        >
-          Send email
+        <Button width="100%" variant="primary" type="submit">
+          {isSubmitting ? "Loading..." : "Send email"}
         </Button>
         <Reminder view="Remember" />
       </div>

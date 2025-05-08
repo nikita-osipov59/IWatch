@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { CircleUserRound, Image } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-import { getAuthStore } from "@/store";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui";
 
@@ -9,46 +11,39 @@ import { AuthService } from "@/services";
 
 import style from "./style.module.scss";
 
-const SettingsProfile = () => {
-  const { error, setError } =
-    getAuthStore();
+const schema = z.object({
+  username: z.string().min(2),
+  photoURL: z.string(),
+});
 
+type SettingsProfileForm = z.infer<typeof schema>;
+
+const SettingsProfile = () => {
   const [formName, setFormName] = useState("");
   const [formPhotoURL, setFormPhotoURL] = useState("");
 
   const { handleUpdateProfile } = AuthService();
 
-  const MIN_NAME_LENGTH = 2;
-  const MAX_NAME_LENGTH = 30;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SettingsProfileForm>({
+    resolver: zodResolver(schema),
+  });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (
-      formName.length < MIN_NAME_LENGTH ||
-      formName.length > MAX_NAME_LENGTH
-    ) {
-      setError(
-        `Username must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long.`
-      );
-      setTimeout(() => {
-        setError(null);
-      }, 5000);
-      return;
-    }
-    
-    handleUpdateProfile(formName!, formPhotoURL!);
+  const onSubmit: SubmitHandler<SettingsProfileForm> = async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    handleUpdateProfile(data.username, data.photoURL!);
   };
 
   return (
     <div className={style.box}>
       <div className={style.titleBox}>
         <p className={style.title}>Edit profile</p>
-        <p className={style.description}>
-          Manage your profile settings
-        </p>
+        <p className={style.description}>Manage your profile settings</p>
       </div>
-      <form onSubmit={(e) => handleSubmit(e)} className={style.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <div className={style.content}>
           <div className={style.username}>
             <p>Username</p>
@@ -57,6 +52,7 @@ const SettingsProfile = () => {
             </label>
             <input
               className={style.input}
+              {...register("username")}
               id="username-input"
               type="text"
               value={formName}
@@ -64,6 +60,9 @@ const SettingsProfile = () => {
               placeholder="username"
             />
           </div>
+          {errors.username && (
+            <span className="error">{errors.username?.message}</span>
+          )}
           <div className={style.photoURL}>
             <p>PhotoURL</p>
             <label htmlFor="photoURL-input" className={style.photoURL}>
@@ -71,6 +70,7 @@ const SettingsProfile = () => {
             </label>
             <input
               className={style.input}
+              {...register("photoURL")}
               id="photoURL-input"
               type="text"
               value={formPhotoURL}
@@ -78,10 +78,12 @@ const SettingsProfile = () => {
               placeholder="photoURL"
             />
           </div>
-          {error && <span className="error">{error}</span>}
+          {errors.photoURL && (
+            <span className="error">{errors.photoURL?.message}</span>
+          )}
         </div>
         <Button variant="primary" width="100%" type="submit">
-          Save changes
+          {isSubmitting ? "Loading..." : "Save changes"}
         </Button>
       </form>
     </div>

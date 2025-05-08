@@ -1,4 +1,9 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { useLocation } from "react-router-dom";
+
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useState } from "react";
 
@@ -10,24 +15,43 @@ import { AuthService } from "@/services";
 
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 
-import { Button, Reminder } from "@/components/ui";
-
-import { NavLinkBtn } from "@/components/ui";
+import { Button, Reminder, NavLinkBtn } from "@/components/ui";
 
 import style from "./style.module.scss";
 
+const schema = z.object({
+  email: z.string().email().min(2).max(40),
+  password: z.string(),
+});
+
+type AuthForm = z.infer<typeof schema>;
+
 export const Form = () => {
-  const { error, email, setEmail } = getAuthStore();
+  const { email, setEmail } = getAuthStore();
 
   const { handleLogin, handleRegistration } = AuthService();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<AuthForm>({
+    resolver: zodResolver(schema),
+  });
 
   const [password, setPassword] = useState("");
   const [isShow, setIsShow] = useState(false);
 
   const location = useLocation();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<AuthForm> = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    if (location.pathname === ROUTER_PATH.REGISTRATION) {
+      handleRegistration(email, password);
+    }
+    if (location.pathname === ROUTER_PATH.AUTH) {
+      handleLogin(email, password);
+    }
   };
 
   return (
@@ -37,7 +61,7 @@ export const Form = () => {
           Welcome to <span>IWatch</span>you can do more
         </p>
       </div>
-      <form onSubmit={handleSubmit} className={style.box}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.box}>
         <div className={style.title}>
           <NavLinkBtn to={ROUTER_PATH.REGISTRATION} variant="default">
             Registration
@@ -55,6 +79,7 @@ export const Form = () => {
             </label>
             <input
               className={style.input}
+              {...register("email")}
               id="mail-input"
               type="text"
               value={email}
@@ -62,6 +87,9 @@ export const Form = () => {
               placeholder="example@gmail.ru"
             />
           </div>
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
           <div className={style.password}>
             <p>Password</p>
             <label htmlFor="password-input" className={style.lock}>
@@ -69,6 +97,7 @@ export const Form = () => {
             </label>
             <input
               className={style.input}
+              {...register("password")}
               id="password-input"
               type={isShow ? "text" : "password"}
               value={password}
@@ -93,18 +122,14 @@ export const Form = () => {
               </label>
             )}
           </div>
-
-          {error && <span className="error">{error}</span>}
+          {errors.password && (
+            <span className="error">{errors.password?.message}</span>
+          )}
         </div>
         {location.pathname === ROUTER_PATH.REGISTRATION && (
           <>
-            <Button
-              onClick={() => handleRegistration(email, password)}
-              width="100%"
-              variant="primary"
-              type="submit"
-            >
-              Registration
+            <Button width="100%" variant="primary" type="submit">
+              {isSubmitting ? "Loading..." : "Registration"}
             </Button>
             <Reminder view="Registration" />
           </>
@@ -114,13 +139,8 @@ export const Form = () => {
             <div className={style.forgotBox}>
               <Reminder view="Forgot" />
             </div>
-            <Button
-              onClick={() => handleLogin(email, password)}
-              width="100%"
-              variant="primary"
-              type="submit"
-            >
-              Login
+            <Button width="100%" variant="primary" type="submit">
+              {isSubmitting ? "Loading..." : "Login"}
             </Button>
             <Reminder view="Login" />
           </>
