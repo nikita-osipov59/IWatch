@@ -39,7 +39,7 @@ export const PrivateRoute = () => {
           <Suspense
             fallback={
               <div className={style.loader}>
-                <Loading />
+                <Loading position="center" />
               </div>
             }
           >

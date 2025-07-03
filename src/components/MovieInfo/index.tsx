@@ -4,7 +4,7 @@ import {
   MovieSimilars,
   MovieTrailer,
 } from "@/components/";
-import { BorderPanel } from "@/components/ui";
+import { BorderPanel, Loading } from "@/components/ui";
 
 import style from "./style.module.scss";
 import { useParams } from "react-router-dom";
@@ -13,7 +13,11 @@ import { useGetQueryMovieById } from "@/hooks";
 export const MovieInfo = () => {
   const { id } = useParams();
 
-  const { data } = useGetQueryMovieById(id!);
+  const { data, isPending } = useGetQueryMovieById(id!);
+
+  if (isPending) {
+    return <Loading position="center" />;
+  }
 
   return (
     <div className={style.box}>

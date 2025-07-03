@@ -11,4 +11,5 @@ export interface LoadingProps {
     | "grid"
     | "circle"
     | "ripple";
+    position?: 'center'  
 }
