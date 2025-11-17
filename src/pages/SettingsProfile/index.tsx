@@ -12,7 +12,7 @@ import { AuthService } from "@/services";
 import style from "./style.module.scss";
 
 const schema = z.object({
-  username: z.string().min(2),
+  username: z.string().min(2, "Минимальная длина: 2 символа"),
   photoURL: z.string(),
 });
 
@@ -34,6 +34,7 @@ const SettingsProfile = () => {
 
   const onSubmit: SubmitHandler<SettingsProfileForm> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
+    // TODO: Разделить обновление профиля на разные экшены
     handleUpdateProfile(data.username, data.photoURL!);
   };
 

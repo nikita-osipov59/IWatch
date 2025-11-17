@@ -78,10 +78,11 @@ export const AuthService = () => {
       });
   };
 
-  const handleUpdateProfile = (formName: string, formPhotoURL: string) => {
+  // TODO: Разделить обновление профиля на разные экшены
+  const handleUpdateProfile = (formPhotoURL: string, formName?: string) => {
     updateProfile(user!, {
       displayName: formName,
-      photoURL: formPhotoURL.length > 0 ? formPhotoURL: photoURL!,
+      photoURL: formPhotoURL.length > 0 ? formPhotoURL : photoURL!,
     })
       .then(() => {
         setName(user!.displayName!);
