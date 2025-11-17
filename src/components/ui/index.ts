@@ -18,3 +18,4 @@ export * from "./Reminder";
 export * from "./Loading";
 export * from "./FormRecoveryPassword";
 export * from "./NotificationPanel";
+export * from "./Footer";

@@ -6,6 +6,7 @@ import { ROUTER_PATH } from "@/router/PATH";
 import {
   AsidePanel,
   Container,
+  Footer,
   Loading,
   NotificationPanel,
   Search,
@@ -43,8 +44,11 @@ export const PrivateRoute = () => {
               </div>
             }
           >
-            <Outlet />
+            <main className={style.main}>
+              <Outlet />
+            </main>
           </Suspense>
+          <Footer />
         </div>
       </Container>
     )
