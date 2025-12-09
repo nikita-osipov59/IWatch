@@ -6,13 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "^3.4.0"
@@ -24,7 +32,21 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.49.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm lint",
+      "pnpm format:fix",
+      "pnpm lint:fix"
+    ],
+    "*.{json,md,yml}": [
+      "pnpm format:fix"
+    ],
+    "*.{json,md}": "prettier --write",
+    "*.css": "prettier --write"
   }
 }
