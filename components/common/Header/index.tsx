@@ -1,24 +1,21 @@
-import Link from "next/link";
-import { twMerge } from "tailwind-merge";
-import clsx from "clsx";
+import Link from 'next/link';
+import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx';
 
-import { House, LogOut } from "lucide-react";
+import { House, LogOut } from 'lucide-react';
 
-import { ROUTER_PATH } from "@/constants";
-import { Logo } from "@/components/common";
+import { ROUTER_PATH } from '@/constants';
+import { Logo } from '@/components/common';
 
 const linkClasses = twMerge(
-  clsx(
-    "flex gap-3 items-center transition-all duration-300 p-2 rounded",
-    "hover:text-foreground"
-  )
+  clsx('flex items-center gap-3 rounded p-2 transition-all duration-300', 'hover:text-foreground'),
 );
 
 export const Header = () => {
   return (
-    <header className="h-screen w-[150px] py-6 border-r border-border fixed">
-      <nav className="h-full " aria-label="Главное меню">
-        <ul className="flex flex-col justify-between h-full gap-[30px] text-accent ">
+    <header className="fixed h-screen w-[150px] border-r border-border py-6">
+      <nav className="h-full" aria-label="Главное меню">
+        <ul className="flex h-full flex-col justify-between gap-[30px] text-accent">
           <li>
             <Logo />
           </li>

@@ -2,7 +2,7 @@ type TelegramProps = {
   color?: string;
 };
 
-export const Telegram = ({ color = "#75767c" }: TelegramProps) => {
+export const Telegram = ({ color = '#75767c' }: TelegramProps) => {
   return (
     <div>
       <svg

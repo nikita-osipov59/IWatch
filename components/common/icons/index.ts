@@ -1,2 +1,2 @@
-export * from "./Github";
-export * from "./Telegram";
+export * from './Github';
+export * from './Telegram';

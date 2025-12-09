@@ -1,7 +1,7 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Страница не существует",
+  title: 'Страница не существует',
   robots: { index: false, follow: false },
 };
 
