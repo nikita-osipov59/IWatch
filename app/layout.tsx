@@ -8,6 +8,7 @@ import '@/styles/globals.css';
 import { Footer, Header } from '@/components/common';
 
 import { SITE_DESCRIPTION, SITE_NAME } from '@/constants';
+import { TanstackProvider } from '@/providers';
 
 const firaCode = Fira_Code({
   variable: '--font-fira-code',
@@ -27,14 +28,16 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${firaCode.variable} container antialiased`}>
-        <main className="flex">
-          <Header />
-          <div className="ml-[150px] flex min-h-screen w-full flex-col gap-[15px] p-[15px]">
-            <div className="flex-1">{children}</div>
-            <Footer />
+        <TanstackProvider>
+          <div className="flex">
+            <Header />
+            <div className="ml-[150px] flex min-h-screen w-full flex-col gap-[15px] p-[15px]">
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
           </div>
-        </main>
-        <Analytics mode={'production'} />
+          <Analytics mode={'production'} />
+        </TanstackProvider>
       </body>
     </html>
   );
