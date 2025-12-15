@@ -11,7 +11,7 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint-staged": "lint-staged",
-    "pre-push": "husky run pre-push"
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.12",

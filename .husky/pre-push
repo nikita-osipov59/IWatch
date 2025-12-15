@@ -1,3 +1,13 @@
-echo "🔍 Full build check..."
-pnpm build || (echo "❌ Build failed - fix before push!" && exit 1)
-echo "✅ Ready to push!"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔨 Starting build check..."
+pnpm build
+
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Push blocked."
+  echo "💡 Fix errors and try again."
+  exit 1
+fi
+
+echo "✅ Build successful! Ready to push."
