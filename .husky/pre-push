@@ -1,0 +1,3 @@
+echo "🔍 Full build check..."
+pnpm build || (echo "❌ Build failed - fix before push!" && exit 1)
+echo "✅ Ready to push!"
