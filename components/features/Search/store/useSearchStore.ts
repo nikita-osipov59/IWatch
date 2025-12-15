@@ -53,14 +53,14 @@ export interface State {
   data: DataDocs | null;
 }
 
+const inputValue = localStorage.getItem('inputValue');
+
 export const useSearchStore = create<State>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       data: null,
       inputValue: '',
       getMovieBySearch: async (value) => {
-        const inputValue = value || get().inputValue;
-
         try {
           const response = await apiBase.get(
             `movie/search?page=1&limit=20&query=${value || inputValue}`,
