@@ -46,7 +46,8 @@
     "*.{js,jsx,ts,tsx}": [
       "pnpm lint",
       "pnpm format:fix",
-      "pnpm lint:fix"
+      "pnpm lint:fix",
+      "pnpm build"
     ],
     "*.{json,md,yml}": [
       "pnpm format:fix"
