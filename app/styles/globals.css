@@ -2,19 +2,25 @@
 
 :root {
   --background: #100f10;
+  --background-info: #1a1a1a;
   --foreground: #fff;
   --default: 16px;
   --primary: #f50;
+  --focus: #f50;
   --accent: #75767c;
   --border: #262626;
+  --main: #fff;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-info: var(--background-info);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-border: var(--border);
+  --color-focus: var(--focus);
+  --color-main: var(--main);
   --text-default: var(--default);
 }
 
@@ -29,6 +35,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-fira-code), sans-serif;
+  font-weight: 400;
   font-size: var(--default);
 }
 

@@ -23,7 +23,6 @@
       "@/*": ["./*"],
       "@/styles/*": ["./app/styles/*"],
       "@/constants/*": ["./constants/"],
-      "@/components/common/*": ["./components/common/"]
     }
   },
   "include": [
