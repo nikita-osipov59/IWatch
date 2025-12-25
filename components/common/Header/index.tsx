@@ -1,10 +1,13 @@
-import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
-import clsx from 'clsx';
+'use client';
 
-import { House, LogOut } from 'lucide-react';
+import Link from 'next/link';
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { usePathname } from 'next/navigation';
+import { LogOut } from 'lucide-react';
 
 import { ROUTER_PATH } from '@/constants';
+import { navLinks } from './constants';
 import { Logo } from '@/components/common';
 
 const linkClasses = twMerge(
@@ -12,6 +15,8 @@ const linkClasses = twMerge(
 );
 
 export const Header = () => {
+  const router = usePathname();
+
   return (
     <header className="fixed h-screen w-[150px] border-r border-border py-6">
       <nav className="h-full" aria-label="Главное меню">
@@ -20,12 +25,14 @@ export const Header = () => {
             <Logo />
           </li>
           <div>
-            <li>
-              <Link className={linkClasses} href={ROUTER_PATH.HOME}>
-                <House size={22} />
-                <h1>Home</h1>
-              </Link>
-            </li>
+            {navLinks.map(({ name, link, icon }) => (
+              <li key={link}>
+                <Link className={`${linkClasses} ${router === link ? 'active' : ''}`} href={link}>
+                  {icon}
+                  {name}
+                </Link>
+              </li>
+            ))}
           </div>
           <li>
             <Link className={linkClasses} href={ROUTER_PATH.HOME}>
