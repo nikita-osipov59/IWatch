@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { hostname: 'avatars.mds.yandex.net' },
       { hostname: 'upload.wikimedia.org' },
       { hostname: 'image.tmdb.org' },
+      { hostname: 'st.kp.yandex.net' },
     ],
   },
 };
