@@ -12,7 +12,7 @@ import { queryClient } from '@/api';
 export const useGetQueryMovieBySearch = () => {
   const { getMovieBySearch, inputValue } = useSearchStore();
   return useQuery({
-    queryKey: MOVIE_SEARCH_QUERY_KEY,
+    queryKey: [MOVIE_SEARCH_QUERY_KEY, inputValue],
     queryFn: () => getMovieBySearch(inputValue),
     refetchOnWindowFocus: false,
   });
