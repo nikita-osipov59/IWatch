@@ -1,5 +1,11 @@
+import { Metadata } from 'next';
+
 import { Footer, Header } from '@/components/common';
 import { Search } from '@/components/features';
+
+export const metadata: Metadata = {
+  title: 'Главная',
+};
 
 export default function RootLayout({
   children,
