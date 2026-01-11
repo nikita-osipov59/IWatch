@@ -6,12 +6,15 @@ import { twMerge } from 'tailwind-merge';
 import { usePathname } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 
-import { ROUTER_PATH } from '@/constants';
 import { navLinks } from './constants';
 import { Logo } from '@/components/common';
+import { signOut } from '@/actions/auth';
 
 const linkClasses = twMerge(
-  clsx('flex items-center gap-3 rounded p-2 transition-all duration-300', 'hover:text-foreground'),
+  clsx(
+    'flex w-fit items-center gap-3 rounded p-2 transition-all duration-300',
+    'hover:text-foreground',
+  ),
 );
 
 export const Header = () => {
@@ -35,10 +38,10 @@ export const Header = () => {
             ))}
           </div>
           <li>
-            <Link className={linkClasses} href={ROUTER_PATH.HOME}>
+            <button onClick={() => signOut()} className={`${linkClasses} cursor-pointer`}>
               <LogOut />
               <h1>Logout</h1>
-            </Link>
+            </button>
           </li>
         </ul>
       </nav>

@@ -4,3 +4,4 @@ export * from './Footer';
 export * from './icons';
 export * from './BorderPanel';
 export * from './Loading';
+export * from './Reminder';

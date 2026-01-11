@@ -10,6 +10,7 @@
   --accent: #75767c;
   --border: #262626;
   --main: #fff;
+  --error: #e85e69;
 }
 
 @theme inline {
@@ -21,6 +22,7 @@
   --color-border: var(--border);
   --color-focus: var(--focus);
   --color-main: var(--main);
+  --color-error: var(--error);
   --text-default: var(--default);
 }
 
@@ -47,4 +49,8 @@ body {
 
 .active {
   @apply text-foreground;
+}
+
+.error {
+  @apply text-error;
 }
