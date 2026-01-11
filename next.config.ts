@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       { hostname: 'upload.wikimedia.org' },
       { hostname: 'image.tmdb.org' },
       { hostname: 'st.kp.yandex.net' },
+      { hostname: 'image.openmoviedb.com' },
     ],
   },
 };
