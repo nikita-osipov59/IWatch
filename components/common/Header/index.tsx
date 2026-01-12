@@ -4,11 +4,9 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { usePathname } from 'next/navigation';
-import { LogOut } from 'lucide-react';
 
 import { navLinks } from './constants';
-import { Logo } from '@/components/common';
-import { signOut } from '@/actions/auth';
+import { Logo, LogOut } from '@/components/common';
 
 const linkClasses = twMerge(
   clsx(
@@ -38,10 +36,7 @@ export const Header = () => {
             ))}
           </div>
           <li>
-            <button onClick={() => signOut()} className={`${linkClasses} cursor-pointer`}>
-              <LogOut />
-              <h1>Logout</h1>
-            </button>
+            <LogOut />
           </li>
         </ul>
       </nav>
