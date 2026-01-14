@@ -36,6 +36,14 @@ export const Reminder: React.FC<ReminderProps> = ({ view }) => {
           </Link>
         </p>
       )}
+      {view === 'Forgot' && (
+        <Link
+          className="flex w-fit flex-col gap-[5px] text-accent duration-300 hover:text-foreground"
+          href={ROUTER_PATH.RECOVERYPASSWORD}
+        >
+          Forgot password?
+        </Link>
+      )}
     </>
   );
 };

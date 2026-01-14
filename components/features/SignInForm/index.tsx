@@ -126,6 +126,9 @@ export const SignInForm = () => {
           {errors.password && <span className="error">{errors.password?.message}</span>}
           {error && <span className="error">{error}</span>}
         </div>
+        <div className="flex justify-end">
+          <Reminder view="Forgot" />
+        </div>
         <button
           className="w-full cursor-pointer rounded-xl bg-primary p-[15px] duration-300 outline-none hover:brightness-[.8] focus:brightness-[.8]"
           type="submit"
