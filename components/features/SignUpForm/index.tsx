@@ -11,6 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import Link from 'next/link';
 
+import toast from 'react-hot-toast';
+
 import { ROUTER_PATH } from '@/constants';
 
 import { useGetAuthStore } from '@/store';
@@ -29,7 +31,6 @@ export type SignUpForm = z.infer<typeof schema>;
 
 export const SignUpForm = () => {
   const { email, setEmail } = useGetAuthStore();
-  const [error, setError] = useState('');
 
   const {
     register,
@@ -46,7 +47,7 @@ export const SignUpForm = () => {
     const response = await signUp(data);
 
     if (response.error) {
-      setError(response.error);
+      return toast.error(response.error);
     }
   };
 
@@ -124,7 +125,6 @@ export const SignUpForm = () => {
             )}
           </div>
           {errors.password && <span className="error">{errors.password?.message}</span>}
-          {error && <span className="error">{error}</span>}
         </div>
         <button
           className="w-full cursor-pointer rounded-xl bg-primary p-[15px] duration-300 outline-none hover:brightness-[.8] focus:brightness-[.8]"

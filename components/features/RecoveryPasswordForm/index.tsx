@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -24,7 +24,6 @@ type RecoveryPasswordForm = z.infer<typeof schema>;
 
 export const RecoveryPasswordForm = () => {
   const { email, setEmail } = useGetAuthStore();
-  const [error, setError] = useState('');
 
   const {
     register,
@@ -36,10 +35,11 @@ export const RecoveryPasswordForm = () => {
 
   const onSubmit: SubmitHandler<RecoveryPasswordForm> = async (data) => {
     const response = await recoveryPasswordForEmail(data);
-
     if (response?.error) {
-      setError(response.error);
+      return toast.error(response.error);
     }
+
+    toast.success('Проверьте почту!');
   };
 
   return (
@@ -73,7 +73,6 @@ export const RecoveryPasswordForm = () => {
           </div>
           {errors.email && <span className="error">{errors.email.message}</span>}
           <div className="relative flex flex-col gap-[5px]"></div>
-          {error && <span className="error">{error}</span>}
         </div>
 
         <button

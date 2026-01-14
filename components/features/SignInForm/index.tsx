@@ -8,6 +8,7 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
 
 import Link from 'next/link';
 
@@ -29,7 +30,6 @@ type AuthForm = z.infer<typeof schema>;
 
 export const SignInForm = () => {
   const { email, setEmail } = useGetAuthStore();
-  const [error, setError] = useState('');
 
   const {
     register,
@@ -46,7 +46,7 @@ export const SignInForm = () => {
     const response = await signIn(data);
 
     if (response.error) {
-      setError(response.error);
+      return toast.error(response.error);
     }
   };
 
@@ -124,7 +124,6 @@ export const SignInForm = () => {
             )}
           </div>
           {errors.password && <span className="error">{errors.password?.message}</span>}
-          {error && <span className="error">{error}</span>}
         </div>
         <div className="flex justify-end">
           <Reminder view="Forgot" />

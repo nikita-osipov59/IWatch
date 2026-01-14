@@ -1,7 +1,11 @@
 'use client';
+
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
+
 import { createClient } from '@/utils/supabase/client';
+import { ROUTER_PATH } from '@/constants';
 
 export const RecoveryVerify = () => {
   const searchParams = useSearchParams();
@@ -10,18 +14,19 @@ export const RecoveryVerify = () => {
     const verifyRecovery = async () => {
       const code = searchParams.get('code');
 
-      if (!code) return;
+      if (!code) {
+        redirect(ROUTER_PATH.RECOVERYPASSWORD);
+      }
 
       const supabase = createClient();
+
       const { error } = await supabase.auth.verifyOtp({
         type: 'recovery' as const,
         token_hash: code,
       });
 
       if (error) {
-        console.error('Recovery error:', error.message);
-      } else {
-        console.log('✅ Recovery verified!');
+        toast.error(error.message);
       }
     };
 
