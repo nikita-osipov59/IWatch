@@ -1,33 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from './utils/supabase/server';
+import { createServer } from './utils/supabase/server';
 import { ROUTER_PATH } from './constants';
 
+const PUBLIC_PATHS = [
+  ROUTER_PATH.SIGNIN,
+  ROUTER_PATH.SIGNUP,
+  ROUTER_PATH.RECOVERYPASSWORD,
+  ROUTER_PATH.UPDATEPASSWORD,
+];
+
 export async function proxy(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
   const response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
+    request: { headers: request.headers },
   });
 
-  const supabase = await createClient();
+  const supabase = await createServer();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const pathname = request.nextUrl.pathname;
-
-  if (
-    !user &&
-    !pathname.startsWith(ROUTER_PATH.SIGNIN) &&
-    !pathname.startsWith(ROUTER_PATH.SIGNUP)
-  ) {
+  // Неавторизован → signin (кроме public)
+  if (!user && !PUBLIC_PATHS.some((path) => pathname.startsWith(path))) {
     return NextResponse.redirect(new URL(ROUTER_PATH.SIGNIN, request.url));
   }
 
-  if (
-    user &&
-    (pathname.startsWith(ROUTER_PATH.SIGNIN) || pathname.startsWith(ROUTER_PATH.SIGNUP))
-  ) {
+  // Авторизован → home с public страниц
+  if (user && PUBLIC_PATHS.some((path) => pathname.startsWith(path))) {
     return NextResponse.redirect(new URL(ROUTER_PATH.HOME, request.url));
   }
 
