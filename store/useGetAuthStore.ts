@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type User = {
+export type AuthStoreActions = {
   setEmail: (email: string) => void;
 
   email: string;
 };
 
-export const useGetAuthStore = create<User>()(
+export const useGetAuthStore = create<AuthStoreActions>()(
   persist(
     (set) => ({
       email: '',
