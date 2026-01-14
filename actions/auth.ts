@@ -3,13 +3,13 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { createClient } from '@/utils/supabase/server';
+import { createServer } from '@/utils/supabase/server';
 
 import { ROUTER_PATH } from '@/constants';
 import { SignUpForm } from '@/components/features';
 
 export const signUp = async (data: SignUpForm) => {
-  const supabase = await createClient();
+  const supabase = await createServer();
 
   const email = data.email;
   const password = data.password;
@@ -28,7 +28,7 @@ export const signUp = async (data: SignUpForm) => {
 };
 
 export const signIn = async (data: SignUpForm) => {
-  const supabase = await createClient();
+  const supabase = await createServer();
 
   const email = data.email;
   const password = data.password;
@@ -47,7 +47,7 @@ export const signIn = async (data: SignUpForm) => {
 };
 
 export const signOut = async () => {
-  const supabase = await createClient();
+  const supabase = await createServer();
   await supabase.auth.signOut();
 
   revalidatePath(ROUTER_PATH.HOME);

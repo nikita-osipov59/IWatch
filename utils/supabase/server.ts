@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-export const createClient = async () => {
+export const createServer = async () => {
   const cookieStore = await cookies();
 
   return createServerClient(supabaseUrl!, supabaseKey!, {
