@@ -19,7 +19,7 @@ export const Search = () => {
   return (
     <form onSubmit={handleSubmit} className="group relative inline-flex w-fit transition-all">
       <input
-        className="group/search flex w-60 items-center gap-2.5 rounded-xl border border-border bg-background-info p-[13px] pr-[68px] font-light transition-all duration-300 focus-within:border-focus focus:ring-0 focus:outline-none"
+        className="group/search flex w-60 items-center gap-2.5 rounded-xl border border-border bg-background-info p-[13px] pr-[68px] font-light text-main transition-all duration-300 focus-within:border-focus focus:ring-0 focus:outline-none"
         type="search"
         name="search"
         placeholder="Search"
