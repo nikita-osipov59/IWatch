@@ -28,7 +28,7 @@ export const UserPanel = ({ user, type }: UserPanelProps) => {
       )}
       {type === 'button' && (
         <button className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-background-info p-2.5 text-main duration-300 hover:text-primary">
-          <CircleUserRound size={32} />
+          <CircleUserRound size={30} />
           <p>{user.email}</p>
           <ChevronDown />
         </button>
