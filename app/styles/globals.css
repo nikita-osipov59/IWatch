@@ -35,7 +35,7 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--accent);
   font-family: var(--font-fira-code), sans-serif;
   font-weight: 400;
   font-size: var(--default);
