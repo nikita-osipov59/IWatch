@@ -74,7 +74,7 @@ export const SignInForm = () => {
         <div className="flex w-full flex-col gap-[15px]">
           <div className="relative flex flex-col gap-[5px]">
             <p>Email</p>
-            <label className="absolute bottom-4 left-[15px] text-accent" htmlFor="mail-input">
+            <label className="absolute bottom-[17px] left-[15px] text-accent" htmlFor="mail-input">
               <Mail size={22} />
             </label>
             <input
@@ -105,23 +105,12 @@ export const SignInForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
             />
-            {isShow ? (
-              <label
-                className="absolute right-[15px] bottom-4 cursor-pointer text-accent"
-                onClick={() => setIsShow(!isShow)}
-                htmlFor="password-input"
-              >
-                <EyeOff size={22} />
-              </label>
-            ) : (
-              <label
-                className="absolute right-[15px] bottom-[17px] cursor-pointer text-accent"
-                onClick={() => setIsShow(!isShow)}
-                htmlFor="password-input"
-              >
-                <Eye size={22} />
-              </label>
-            )}
+            <label
+              className="absolute right-[15px] bottom-[17px] cursor-pointer text-accent"
+              onClick={() => setIsShow(!isShow)}
+            >
+              {isShow ? <EyeOff size={22} /> : <Eye size={22} />}
+            </label>
           </div>
           {errors.password && <span className="error">{errors.password?.message}</span>}
         </div>
