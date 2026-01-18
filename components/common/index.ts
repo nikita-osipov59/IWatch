@@ -6,5 +6,6 @@ export * from './BorderPanel';
 export * from './Loading';
 export * from './Reminder';
 export * from './LogOut';
+export * from './Settings';
 export * from './UserPanel';
 export * from './UserPanel/UserPanelExtended';

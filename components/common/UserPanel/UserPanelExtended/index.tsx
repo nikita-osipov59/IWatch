@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 
-import { LogOut, UserPanel } from '@/components/common';
+import { LogOut, Settings, UserPanel } from '@/components/common';
 
 type UserPanelExtendedProps = {
   user: User;
@@ -36,6 +36,9 @@ export const UserPanelExtended = ({ user }: UserPanelExtendedProps) => {
         <div className="absolute top-[69px] right-0 z-10 min-w-[250px] rounded-xl border border-border bg-background-info p-[15px]">
           <ul className="flex flex-col gap-[15px]">
             <UserPanel type="link" user={user} />
+            <li className="border-t border-t-border pt-[15px]">
+              <Settings />
+            </li>
             <li className="border-t border-t-border pt-[15px]">
               <LogOut size={22} />
             </li>
