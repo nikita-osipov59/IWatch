@@ -22,7 +22,7 @@ export type SettingsProfileForm = {
 
 const schema = z.object({
   email: z
-    .email()
+    .string()
     .optional()
     .refine(
       (val) => {
@@ -75,7 +75,6 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
         } else {
           toast.success('✅ Email обновлен! Проверьте почту.');
           hasSuccess = true;
-          signOut();
         }
       }
 
@@ -86,7 +85,6 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
         } else {
           toast.success('✅ Пароль обновлен!');
           hasSuccess = true;
-          signOut();
         }
       }
 
@@ -100,12 +98,12 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
         } else {
           toast.success('✅ Email и пароль обновлены. Проверьте почту!');
           hasSuccess = true;
-          signOut();
         }
       }
 
       if (hasSuccess) {
         reset();
+        signOut();
       }
     } catch (error) {
       console.error('Update error:', error);
@@ -158,7 +156,6 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
 
         <form className="flex flex-col gap-[15px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[15px]">
-            {/* Email поле */}
             {mode !== 'password' && (
               <>
                 <div className="relative flex flex-col gap-[5px]">
@@ -180,7 +177,6 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
               </>
             )}
 
-            {/* Password поле */}
             {mode !== 'email' && (
               <>
                 <div className="relative flex flex-col gap-[5px]">
@@ -211,7 +207,6 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
             )}
           </div>
 
-          {/* Умная кнопка */}
           {canSubmit && (
             <button
               className="w-full cursor-pointer rounded-xl bg-primary p-[15px] duration-300 outline-none hover:brightness-[.8]"
