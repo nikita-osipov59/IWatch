@@ -7,4 +7,4 @@ export * from './RecoveryPasswordForm';
 export * from './RecoveryVerify';
 export * from './UpdatePasswordForm';
 export * from './Settings/SettingsList';
-export * from './Settings/SettingsProfile';
+export * from './Settings/SettingsSecurity';

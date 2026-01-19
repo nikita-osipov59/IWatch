@@ -1,5 +1,5 @@
 import { getUser } from '@/app/hooks';
-import { SettingsList, SettingsProfile } from '@/components/features';
+import { SettingsList, SettingsSecurity } from '@/components/features';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default async function SettingsPage({
   return (
     <main className="flex flex-col gap-[15px]">
       <SettingsList />
-      {tab === 'profile' && user && <SettingsProfile user={user} />}
+      {tab === 'security' && user && <SettingsSecurity user={user} />}
     </main>
   );
 }
