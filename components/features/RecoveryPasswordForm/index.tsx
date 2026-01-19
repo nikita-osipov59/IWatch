@@ -43,7 +43,7 @@ export const RecoveryPasswordForm = () => {
   };
 
   return (
-    <div className="flex items-center gap-[15px]">
+    <div className="flex min-h-[432px] items-center gap-[15px]">
       <div className="flex h-[-webkit-fill-available] w-[300px] flex-col justify-center rounded-xl bg-[url(/welcomeBG.png)]">
         <p className="flex flex-col justify-center gap-[5px] text-center text-[20px]">
           Welcome to <span className="text-[30px] text-primary uppercase">IWatch</span>you can do
@@ -51,11 +51,11 @@ export const RecoveryPasswordForm = () => {
         </p>
       </div>
       <form
-        className="flex w-[300px] flex-col gap-[15px] rounded-xl border border-border p-[15px]"
+        className="flex h-[-webkit-fill-available] w-[300px] flex-col gap-[15px] rounded-xl border border-border p-[15px]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex justify-center text-foreground">Recovery your password</div>
-        <div className="flex w-full flex-col">
+        <div className="flex h-full w-full flex-col">
           <div className="relative flex flex-col gap-[5px]">
             <p>Email</p>
             <label className="absolute bottom-4 left-[15px] text-accent" htmlFor="mail-input">
@@ -72,7 +72,6 @@ export const RecoveryPasswordForm = () => {
             />
           </div>
           {errors.email && <span className="error">{errors.email.message}</span>}
-          <div className="relative flex flex-col gap-[5px]"></div>
         </div>
 
         <button

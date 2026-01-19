@@ -51,7 +51,7 @@ export const SignInForm = () => {
   };
 
   return (
-    <div className="flex items-center gap-[15px]">
+    <div className="flex min-h-[432px] items-center gap-[15px]">
       <div className="flex h-[-webkit-fill-available] w-[300px] flex-col justify-center rounded-xl bg-[url(/welcomeBG.png)]">
         <p className="flex flex-col justify-center gap-[5px] text-center text-[20px]">
           Welcome to <span className="text-[30px] text-primary uppercase">IWatch</span>you can do
