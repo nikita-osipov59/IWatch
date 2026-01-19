@@ -11,7 +11,7 @@ import { updateEmail, updatePassword, updateEmailAndPassword } from '@/actions/s
 import { signOut } from '@/actions/auth';
 import { TUser } from '@/app/hooks';
 
-export type SettingsProfileForm = {
+export type SettingsSecurityForm = {
   email?: string;
   password?: string;
 };
@@ -49,7 +49,7 @@ export const SettingsSecurity = ({ user }: TUser) => {
     formState: { errors, isSubmitting },
     reset,
     control,
-  } = useForm<SettingsProfileForm>({
+  } = useForm<SettingsSecurityForm>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: '',
@@ -62,7 +62,7 @@ export const SettingsSecurity = ({ user }: TUser) => {
   const hasEmailChange = watchedEmail && watchedEmail !== user.email;
   const hasPasswordChange = !!watchedPassword;
 
-  const onSubmit: SubmitHandler<SettingsProfileForm> = async (data) => {
+  const onSubmit: SubmitHandler<SettingsSecurityForm> = async (data) => {
     try {
       let hasSuccess = false;
 

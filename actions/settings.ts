@@ -1,6 +1,6 @@
 'use server';
 
-import { SettingsProfileForm } from '@/components/features';
+import { SettingsSecurityForm } from '@/components/features';
 import { createServer } from '@/utils/supabase';
 
 export const updateEmail = async (email: string) => {
@@ -23,7 +23,7 @@ export const updatePassword = async (password: string) => {
   }
 };
 
-export const updateEmailAndPassword = async (data: SettingsProfileForm) => {
+export const updateEmailAndPassword = async (data: SettingsSecurityForm) => {
   const supabase = await createServer();
 
   const { error } = await supabase.auth.updateUser({ password: data.password, email: data.email });
