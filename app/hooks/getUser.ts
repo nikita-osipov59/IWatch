@@ -1,4 +1,9 @@
 import { createServer } from '@/utils/supabase';
+import { type User } from '@supabase/supabase-js';
+
+export type TUser = {
+  user: User;
+};
 
 export const getUser = async () => {
   const supabase = await createServer();
