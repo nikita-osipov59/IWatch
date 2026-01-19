@@ -20,6 +20,8 @@ export type SettingsProfileForm = {
   password?: string;
 };
 
+type ModeType = 'email' | 'password' | 'both';
+
 const schema = z.object({
   email: z
     .string()
@@ -113,6 +115,12 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
 
   const canSubmit = hasEmailChange || hasPasswordChange;
 
+  const buttonList: { title: string; mode: ModeType }[] = [
+    { title: 'Email', mode: 'email' },
+    { title: 'Password', mode: 'password' },
+    { title: 'Both', mode: 'both' },
+  ];
+
   return (
     <BorderPanel
       className="w-fit"
@@ -121,39 +129,23 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
       subTitle="Update your personal details"
     >
       <div className="flex flex-col gap-[15px]">
-        <div className="flex gap-2 rounded-xl">
-          <button
-            onClick={() => setMode('email')}
-            className={`rounded-lg px-4 py-2 transition-all ${
-              mode === 'email'
-                ? 'bg-primary text-white shadow-md'
-                : 'hover:cursor-pointer hover:text-primary'
-            }`}
-          >
-            Email
-          </button>
-          <button
-            onClick={() => setMode('password')}
-            className={`rounded-lg px-4 py-2 transition-all ${
-              mode === 'password'
-                ? 'bg-primary text-white shadow-md'
-                : 'hover:cursor-pointer hover:text-primary'
-            }`}
-          >
-            Password
-          </button>
-          <button
-            onClick={() => setMode('both')}
-            className={`rounded-lg px-4 py-2 transition-all ${
-              mode === 'both'
-                ? 'bg-primary text-white shadow-md'
-                : 'hover:cursor-pointer hover:text-primary'
-            }`}
-          >
-            Both
-          </button>
+        <div className="flex w-fit rounded-xl border border-border bg-background-info">
+          {buttonList.map((item, index) => {
+            return (
+              <button
+                onClick={() => setMode(item.mode)}
+                className={`border-r border-border px-4 py-2 transition-all first:rounded-l-xl last:rounded-r-xl last:border-r-0 ${
+                  mode === item.mode
+                    ? 'bg-primary text-white shadow-md'
+                    : 'hover:cursor-pointer hover:text-primary'
+                }`}
+                key={index}
+              >
+                {item.title}
+              </button>
+            );
+          })}
         </div>
-
         <form className="flex flex-col gap-[15px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[15px]">
             {mode !== 'password' && (
@@ -163,7 +155,7 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
                     className="absolute bottom-[17px] left-[15px] text-accent"
                     htmlFor="email-input"
                   >
-                    <Mail />
+                    <Mail size={22} />
                   </label>
                   <input
                     {...register('email')}
@@ -184,7 +176,7 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
                     className="absolute bottom-[17px] left-[15px] text-accent"
                     htmlFor="password-input"
                   >
-                    <Lock />
+                    <Lock size={22} />
                   </label>
                   <input
                     {...register('password')}

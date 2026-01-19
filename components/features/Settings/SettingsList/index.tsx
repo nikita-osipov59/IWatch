@@ -8,7 +8,10 @@ export const SettingsList = () => {
 
   const currentTab = searchParams.get('tab') || 'profile';
 
-  const list = [{ title: 'Profile', href: '?tab=profile' }];
+  const list = [
+    { title: 'Profile', href: '?tab=profile' },
+    { title: 'ASD', href: '?tab=asd' },
+  ];
 
   return (
     <ul className="flex w-fit rounded-xl border border-border bg-background-info">
