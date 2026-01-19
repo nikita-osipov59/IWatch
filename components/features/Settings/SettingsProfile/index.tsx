@@ -170,7 +170,7 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
                     id="email-input"
                     className="flex w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light duration-300 outline-none focus:border-focus"
                     type="email"
-                    placeholder="example@mail.com"
+                    placeholder="your new email"
                   />
                 </div>
                 {errors.email && <div className="error text-red-500">{errors.email.message}</div>}
@@ -191,7 +191,7 @@ export const SettingsProfile = ({ user }: SettingsProfileProps) => {
                     id="password-input"
                     className="flex w-[300px] rounded-xl border border-border px-[45px] py-[15px] font-light duration-300 outline-none focus:border-focus"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="password"
+                    placeholder="your new password"
                   />
                   <label
                     className="absolute right-[15px] bottom-[17px] cursor-pointer text-accent"
