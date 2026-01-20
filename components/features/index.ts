@@ -8,3 +8,4 @@ export * from './RecoveryVerify';
 export * from './UpdatePasswordForm';
 export * from './Settings/SettingsList';
 export * from './Settings/SettingsSecurity';
+export * from './Settings/SettingsProfile';

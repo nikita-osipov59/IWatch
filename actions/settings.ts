@@ -1,6 +1,7 @@
 'use server';
 
-import { SettingsSecurityForm } from '@/components/features';
+import { getUser } from '@/app/hooks';
+import { SettingsProfileForm, SettingsSecurityForm } from '@/components/features';
 import { createServer } from '@/utils/supabase';
 
 export const updateEmail = async (email: string) => {
@@ -27,6 +28,23 @@ export const updateEmailAndPassword = async (data: SettingsSecurityForm) => {
   const supabase = await createServer();
 
   const { error } = await supabase.auth.updateUser({ password: data.password, email: data.email });
+
+  if (error) {
+    return { error: error.message };
+  }
+};
+
+export const updateUserName = async (data: SettingsProfileForm) => {
+  const supabase = await createServer();
+  const user = await getUser();
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      username: data.username,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', user?.id);
 
   if (error) {
     return { error: error.message };

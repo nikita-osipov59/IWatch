@@ -4,13 +4,15 @@ import Link from 'next/link';
 
 import { ROUTER_PATH } from '@/constants';
 import { Loading } from '@/components/common';
+import { Profile } from '@/types';
 
 export interface UserPanelProps {
   type: 'button' | 'link';
   user: User;
+  profile: Profile;
 }
 
-export const UserPanel = ({ user, type }: UserPanelProps) => {
+export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
   if (!user) {
     return <Loading />;
   }
@@ -19,17 +21,17 @@ export const UserPanel = ({ user, type }: UserPanelProps) => {
     <div>
       {type === 'link' && (
         <Link
-          className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-background-info p-2.5 text-main duration-300 hover:text-primary"
+          className="flex w-fit cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-background-info p-2.5 text-main duration-300 hover:text-primary"
           href={ROUTER_PATH.PROFILE + `/${user.id}`}
         >
           <CircleUserRound size={30} />
-          <p>{user.email}</p>
+          <p>{profile.username ?? user.email}</p>
         </Link>
       )}
       {type === 'button' && (
         <button className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-background-info p-2.5 text-main duration-300 hover:text-primary">
           <CircleUserRound size={30} />
-          <p>{user.email}</p>
+          <p>{profile.username ?? user.email}</p>
           <ChevronDown />
         </button>
       )}

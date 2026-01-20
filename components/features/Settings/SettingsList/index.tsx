@@ -1,4 +1,5 @@
 'use client';
+
 import Link from 'next/link';
 import { useSearchParams, usePathname } from 'next/navigation';
 
@@ -8,7 +9,10 @@ export const SettingsList = () => {
 
   const currentTab = searchParams.get('tab') || 'profile';
 
-  const list = [{ title: 'Security', href: '?tab=security' }];
+  const list = [
+    { title: 'Profile', href: '?tab=profile' },
+    { title: 'Security', href: '?tab=security' },
+  ];
 
   return (
     <ul className="flex w-fit rounded-xl border border-border bg-background-info">
