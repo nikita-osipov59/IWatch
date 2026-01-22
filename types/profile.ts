@@ -1,4 +1,4 @@
-export type Profile = {
+export type TProfile = {
   id: string;
   username: string;
   full_name?: string | null;

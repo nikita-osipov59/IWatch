@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 
 import { LogOut, Settings, UserPanel } from '@/components/common';
-import { Profile } from '@/types';
+import { TProfile } from '@/types';
 
 type UserPanelExtendedProps = {
   user: User;
-  profile: Profile;
+  profile: TProfile;
 };
 
 export const UserPanelExtended = ({ user, profile }: UserPanelExtendedProps) => {

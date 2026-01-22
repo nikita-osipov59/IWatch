@@ -9,7 +9,7 @@ import z from 'zod';
 import { BorderPanel } from '@/components/common';
 import { updateUserName } from '@/actions/settings';
 import { User } from '@supabase/supabase-js';
-import { Profile } from '@/types';
+import { TProfile } from '@/types';
 
 const schema = z.object({
   username: z.string().min(2).max(40),
@@ -19,7 +19,7 @@ export type SettingsProfileForm = z.infer<typeof schema>;
 
 type SettingsProfileProps = {
   user: User;
-  profile?: Profile;
+  profile?: TProfile;
 };
 
 export const SettingsProfile = ({ user }: SettingsProfileProps) => {

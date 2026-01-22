@@ -4,12 +4,12 @@ import Link from 'next/link';
 
 import { ROUTER_PATH } from '@/constants';
 import { Loading } from '@/components/common';
-import { Profile } from '@/types';
+import { TProfile } from '@/types';
 
 export interface UserPanelProps {
   type: 'button' | 'link';
   user: User;
-  profile: Profile;
+  profile: TProfile;
 }
 
 export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
