@@ -5,6 +5,7 @@ export * from './SignUpForm';
 export * from './SignInForm';
 export * from './RecoveryPasswordForm';
 export * from './RecoveryVerify';
+export * from './Profile';
 export * from './UpdatePasswordForm';
 export * from './Settings/SettingsList';
 export * from './Settings/SettingsSecurity';
