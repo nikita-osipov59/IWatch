@@ -41,7 +41,7 @@ const schema = z.object({
 
 export const SettingsSecurity = ({ user }: TUser) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [mode, setMode] = useState<'email' | 'password' | 'both'>('both');
+  const [mode, setMode] = useState<ModeType>('both');
 
   const {
     register,
