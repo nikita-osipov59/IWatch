@@ -139,7 +139,7 @@ export const SettingsProfile = () => {
                   </label>
                   <input
                     {...register('username')}
-                    className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light focus:border-focus"
+                    className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light duration-300 outline-none focus:border-focus"
                     placeholder="your new username"
                   />
                 </div>
@@ -157,7 +157,7 @@ export const SettingsProfile = () => {
                   </label>
                   <input
                     {...register('description')}
-                    className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light focus:border-focus"
+                    className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light duration-300 outline-none focus:border-focus"
                     placeholder="your new description"
                   />
                 </div>
@@ -170,7 +170,7 @@ export const SettingsProfile = () => {
             {mode === 'avatar' && (
               <>
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="relative rounded-xl border-2 border-dashed border-gray-300 p-4 text-center transition-all hover:border-primary">
+                  <div className="relative rounded-xl border-2 border-dashed border-border p-4 text-center transition-all hover:border-primary">
                     <Upload className="mx-auto mb-2 h-8 w-8 text-gray-400" />
                     <input
                       {...register('avatar')}
