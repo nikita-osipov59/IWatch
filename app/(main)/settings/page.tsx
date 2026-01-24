@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { getUser } from '@/app/hooks';
-import { getUserWithProfile } from '@/app/hooks';
 import { SettingsList, SettingsProfile, SettingsSecurity } from '@/components/features';
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ export default async function SettingsPage({
   searchParams: Promise<{ tab?: string }>;
 }) {
   const user = await getUser();
-  const userWithProfile = await getUserWithProfile();
+  // const userWithProfile = await getUserWithProfile();
   const resolvedParams = await searchParams;
   const tab = resolvedParams.tab || 'profile';
 
@@ -22,7 +21,7 @@ export default async function SettingsPage({
     <main className="flex flex-col gap-[15px]">
       <SettingsList />
       {tab === 'security' && user && <SettingsSecurity user={user} />}
-      {tab === 'profile' && user && <SettingsProfile user={user} profile={userWithProfile} />}
+      {tab === 'profile' && user && <SettingsProfile />}
     </main>
   );
 }
