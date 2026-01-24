@@ -1,8 +1,8 @@
 import { createServer } from '@/utils/supabase';
 import { getUser } from './getUser';
-import { Profile } from '@/types';
+import { TProfile } from '@/types';
 
-export const getUserWithProfile = async (): Promise<Profile> => {
+export const getUserWithProfile = async (): Promise<TProfile> => {
   const user = await getUser();
 
   const supabase = await createServer();
