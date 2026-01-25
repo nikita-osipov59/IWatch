@@ -35,7 +35,7 @@ export const UserPanelExtended = ({ user, profile }: UserPanelExtendedProps) => 
         <UserPanel type="button" user={user} profile={profile} />
       </div>
       {isOpen && (
-        <div className="absolute top-[69px] right-0 z-10 min-w-[250px] rounded-xl border border-border bg-background-info p-[15px]">
+        <div className="absolute top-[67px] right-0 z-10 min-w-[250px] rounded-xl border border-border bg-background-info p-[15px]">
           <ul className="flex flex-col gap-[15px]">
             <UserPanel type="link" user={user} profile={profile} />
             <li className="border-t border-t-border pt-[15px]">
