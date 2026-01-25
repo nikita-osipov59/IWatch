@@ -11,21 +11,19 @@ type ProfileProps = {
 export const Profile = ({ profile }: ProfileProps) => {
   return (
     <BorderPanel>
-      <div className="flex items-center gap-[25px]">
-        <div className="ml-[25px]">
-          {profile.avatar_url ? (
-            <Image
-              className="w-[150px] rounded-[50%]"
-              src={profile.avatar_url}
-              alt="avatar"
-              width={150}
-              height={150}
-            />
-          ) : (
-            <CircleUserRound size={150} />
-          )}
-        </div>
-        <div className="flex flex-col gap-2.5">
+      <div className="flex items-center gap-[25px] px-[25px]">
+        {profile.avatar_url ? (
+          <Image
+            className="w-[150px] rounded-[50%]"
+            src={profile.avatar_url}
+            alt="avatar"
+            width={150}
+            height={150}
+          />
+        ) : (
+          <CircleUserRound size={150} />
+        )}
+        <div className="flex flex-col gap-[5px]">
           <h1 className="text-[36px]">{profile.username}</h1>
           <p className="text-accent">{profile.description ?? 'description'}</p>
         </div>
