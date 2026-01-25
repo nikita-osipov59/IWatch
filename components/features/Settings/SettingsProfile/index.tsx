@@ -134,12 +134,16 @@ export const SettingsProfile = () => {
             {mode === 'nickname' && (
               <>
                 <div className="relative">
-                  <label className="absolute bottom-[17px] left-[15px] text-accent">
+                  <label
+                    className="absolute bottom-[17px] left-[15px] text-accent"
+                    htmlFor="nickname-input"
+                  >
                     <CircleUser size={22} />
                   </label>
                   <input
                     {...register('username')}
                     className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light duration-300 outline-none focus:border-focus"
+                    id="nickname-input"
                     placeholder="your new username"
                   />
                 </div>
@@ -152,12 +156,16 @@ export const SettingsProfile = () => {
             {mode === 'description' && (
               <>
                 <div className="relative">
-                  <label className="absolute bottom-[17px] left-[15px] text-accent">
+                  <label
+                    className="absolute bottom-[17px] left-[15px] text-accent"
+                    htmlFor="description-input"
+                  >
                     <CircleUser size={22} />
                   </label>
                   <input
                     {...register('description')}
                     className="w-[300px] rounded-xl border border-border py-[15px] pr-[15px] pl-[45px] font-light duration-300 outline-none focus:border-focus"
+                    id="description-input"
                     placeholder="your new description"
                   />
                 </div>
