@@ -27,7 +27,7 @@ export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
         >
           {profile.avatar_url ? (
             <Image
-              className="w-[30px] rounded-[50%]"
+              className="h-[30px] w-[30px] rounded-[50%]"
               src={profile.avatar_url}
               alt="avatar"
               width={30}
@@ -43,7 +43,7 @@ export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
         <button className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-background-info p-2.5 text-main duration-300 hover:text-primary">
           {profile.avatar_url ? (
             <Image
-              className="w-[30px] rounded-[50%]"
+              className="h-[30px] w-[30px] rounded-[50%]"
               src={profile.avatar_url}
               alt="avatar"
               width={30}
