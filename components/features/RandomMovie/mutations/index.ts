@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import { useRandomMovieStore } from '@/components/features/RandomMovie/store';
 import {
@@ -10,7 +10,7 @@ import { queryClient } from '@/api';
 export const useGetQueryRandomMovie = () => {
   const { getRandomMovie } = useRandomMovieStore();
 
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: MOVIE_RANDOM_QUERY_KEY,
     queryFn: () => getRandomMovie(),
     refetchOnWindowFocus: false,
