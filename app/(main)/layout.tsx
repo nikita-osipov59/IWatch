@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Главная',
 };
 
-export default async function RootLayout({
+export default async function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <div className="flex">
       <Header />
-      <div className="ml-[150px] flex min-h-screen w-full flex-col gap-[15px] p-[15px]">
+      <div className="ml-[150px] flex min-h-screen w-[-webkit-fill-available] flex-col gap-[15px] p-[15px]">
         <div className="flex items-center justify-between">
           <Search />
           <UserPanelExtended user={user} profile={userWithProfile} />
