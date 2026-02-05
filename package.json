@@ -21,6 +21,7 @@
     "@tanstack/react-query-devtools": "^5.91.1",
     "@vercel/analytics": "^1.6.1",
     "axios": "^1.13.2",
+    "baseline-browser-mapping": "^2.9.19",
     "clsx": "^2.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",

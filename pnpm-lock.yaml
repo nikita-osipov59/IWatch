@@ -29,6 +29,9 @@ importers:
       axios:
         specifier: ^1.13.2
         version: 1.13.2
+      baseline-browser-mapping:
+        specifier: ^2.9.19
+        version: 2.9.19
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -90,9 +93,6 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.7)
-      baseline-browser-mapping:
-        specifier: ^2.9.19
-        version: 2.9.19
       eslint:
         specifier: ^9
         version: 9.39.1(jiti@2.6.1)
