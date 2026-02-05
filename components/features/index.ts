@@ -1,6 +1,7 @@
 export * from './Search';
 export * from './RandomMovie';
 export * from './Movie';
+export * from './TopMovie';
 export * from './SignUpForm';
 export * from './SignInForm';
 export * from './RecoveryPasswordForm';
