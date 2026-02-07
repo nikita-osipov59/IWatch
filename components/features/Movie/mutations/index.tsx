@@ -7,7 +7,7 @@ export const useGetQueryMovieById = (id: string) => {
   const { getMovieById } = useMoviemByIdStore();
 
   return useQuery({
-    queryKey: [MOVIE_QUERY_KEY, id],
+    queryKey: [...MOVIE_QUERY_KEY, id],
     queryFn: () => getMovieById(id),
     refetchOnWindowFocus: false,
   });
