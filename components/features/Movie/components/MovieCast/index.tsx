@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { BorderPanel } from '@/components/common';
 import { useMoviemByIdStore } from '@/components/features/Movie/store';
+import { ROUTER_PATH } from '@/constants';
 
 export const MovieCast = () => {
   const { data } = useMoviemByIdStore();
@@ -18,9 +20,13 @@ export const MovieCast = () => {
     <BorderPanel title="Cast">
       <div className="overflow-auto">
         <ul className="flex gap-[15px] pb-[15px]">
-          {data?.persons.map((item, index) => {
+          {data?.persons.map((item) => {
             return (
-              <li className="flex flex-col gap-[5px]" key={index}>
+              <Link
+                className="flex flex-col gap-[5px]"
+                key={item.id}
+                href={ROUTER_PATH.PERSON + `/${item.id}`}
+              >
                 <Image
                   className="h-[200px] min-w-[130px] rounded-xl"
                   width={130}
@@ -33,7 +39,7 @@ export const MovieCast = () => {
                   {item.description ? item.description : item.profession}
                 </p>
                 <h3>{item.name}</h3>
-              </li>
+              </Link>
             );
           })}
         </ul>

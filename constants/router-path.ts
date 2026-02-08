@@ -8,4 +8,5 @@ export const ROUTER_PATH = {
   MOVIE: '/movie',
   PROFILE: '/profile',
   SETTINGS: '/settings',
+  PERSON: '/person',
 };
