@@ -8,6 +8,8 @@ export * from './RecoveryPasswordForm';
 export * from './RecoveryVerify';
 export * from './Profile';
 export * from './Person';
+export * from './Genres';
+export * from './MovieByGenre';
 export * from './UpdatePasswordForm';
 export * from './Settings/SettingsList';
 export * from './Settings/SettingsSecurity';

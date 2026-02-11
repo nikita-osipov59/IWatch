@@ -23,6 +23,14 @@ const TopMovie = dynamic(
   },
 );
 
+const Genres = dynamic(
+  () => import('@/components/features/Genres').then((mod) => ({ default: mod.Genres })),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+);
+
 export default function Home() {
   const [componentsLoaded, setComponentsLoaded] = useState(false);
 
@@ -32,6 +40,7 @@ export default function Home() {
         await Promise.all([
           import('@/components/features/RandomMovie'),
           import('@/components/features/TopMovie'),
+          import('@/components/features/Genres'),
         ]);
         setComponentsLoaded(true);
       } catch (error) {
@@ -52,6 +61,7 @@ export default function Home() {
       <main className="flex flex-col gap-[15px]">
         <RandomMovie />
         <TopMovie />
+        <Genres />
       </main>
     </Suspense>
   );

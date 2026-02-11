@@ -9,4 +9,5 @@ export const ROUTER_PATH = {
   PROFILE: '/profile',
   SETTINGS: '/settings',
   PERSON: '/person',
+  SELECTION: '/selection',
 };
