@@ -1,24 +1,18 @@
 import { BorderPanel } from '@/components/common';
-import { useMoviemByIdStore } from '@/components/features/Movie/store';
+import { IMovie } from '@/types/movie';
 
-export const MovieTrailer = () => {
-  const { data } = useMoviemByIdStore();
+type MovieTrailerProps = {
+  data: IMovie;
+};
 
-  if (!data) {
-    return (
-      <BorderPanel>
-        <div>Увы, мы ничего не нашли, попробуйте перезагрузить страницу.</div>
-      </BorderPanel>
-    );
-  }
-
+export const MovieTrailer = ({ data }: MovieTrailerProps) => {
   return (
     <>
-      {data?.videos?.trailers[0]?.url && (
+      {data.videos.trailers[0].url && (
         <BorderPanel title="Trailer">
           <iframe
             className="h-[500px] w-full rounded-xl"
-            src={data?.videos?.trailers[0]?.url}
+            src={data.videos.trailers[0].url}
             allowFullScreen={true}
             title="Страница трейлера на YouTube"
           />

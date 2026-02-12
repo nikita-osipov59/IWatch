@@ -1,21 +1,15 @@
 import { BorderPanel } from '@/components/common';
-import { useMoviemByIdStore } from '@/components/features/Movie/store';
 import {
   movieInfoListIBoxtemsClasses,
   movieInfoListItemsClasses,
 } from '@/components/features/Movie/constants';
+import { IMovie } from '@/types/movie';
 
-export const MovieInfoPanel = () => {
-  const { data } = useMoviemByIdStore();
+type MovieInfoPanelProps = {
+  data: IMovie;
+};
 
-  if (!data) {
-    return (
-      <BorderPanel>
-        <div>Увы, мы ничего не нашли, попробуйте перезагрузить страницу.</div>
-      </BorderPanel>
-    );
-  }
-
+export const MovieInfoPanel = ({ data }: MovieInfoPanelProps) => {
   return (
     <BorderPanel>
       <div className="flex h-fit max-w-[500px] flex-col gap-[15px]">
@@ -26,8 +20,8 @@ export const MovieInfoPanel = () => {
         <ul>
           <p className="text-accent">Genres</p>
           <div className={movieInfoListIBoxtemsClasses}>
-            {data.genres.map((item, index) => (
-              <li className={movieInfoListItemsClasses} key={index}>
+            {data.genres.map((item) => (
+              <li className={movieInfoListItemsClasses} key={`genre-${item.name}`}>
                 {item.name}
               </li>
             ))}
@@ -50,8 +44,8 @@ export const MovieInfoPanel = () => {
         <ul>
           <p className="text-accent">Countries</p>
           <div className={movieInfoListIBoxtemsClasses}>
-            {data.countries.map((item, index) => (
-              <li className={movieInfoListItemsClasses} key={index}>
+            {data.countries.map((item) => (
+              <li className={movieInfoListItemsClasses} key={`countries-${item.name}`}>
                 {item.name}
               </li>
             ))}

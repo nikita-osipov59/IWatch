@@ -2,37 +2,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { BorderPanel } from '@/components/common';
-import { useMoviemByIdStore } from '@/components/features/Movie/store';
 import { ROUTER_PATH } from '@/constants';
+import { IMovie } from '@/types/movie';
 
-export const MovieCast = () => {
-  const { data } = useMoviemByIdStore();
+type MovieCastProps = {
+  data: IMovie;
+};
 
-  if (!data) {
-    return (
-      <BorderPanel>
-        <div>Увы, мы ничего не нашли, попробуйте перезагрузить страницу.</div>
-      </BorderPanel>
-    );
-  }
-
+export const MovieCast = ({ data }: MovieCastProps) => {
   return (
     <BorderPanel title="Cast">
       <div className="overflow-auto">
         <ul className="flex gap-[15px] pb-[15px]">
-          {data?.persons.map((item) => {
+          {data.persons.map((item, index) => {
             return (
               <Link
                 className="flex flex-col gap-[5px]"
-                key={item.id}
+                key={`person-${index}`}
                 href={ROUTER_PATH.PERSON + `/${item.id}`}
               >
                 <Image
                   className="h-[200px] min-w-[130px] rounded-xl"
                   width={130}
                   height={200}
-                  src={item?.photo}
-                  alt={item?.name}
+                  src={
+                    item.photo ||
+                    'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
+                  }
+                  alt={item.name || 'img'}
                   loading="lazy"
                 />
                 <p className="text-[13px] text-accent">

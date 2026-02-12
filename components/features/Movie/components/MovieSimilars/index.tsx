@@ -1,28 +1,23 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useMoviemByIdStore } from '@/components/features/Movie/store';
 import { BorderPanel } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
+import { IMovie } from '@/types/movie';
 
-export const MovieSimilars = () => {
-  const { data } = useMoviemByIdStore();
+type MovieSimilarsProps = {
+  data: IMovie;
+};
 
-  if (!data) {
-    return (
-      <BorderPanel>
-        <div>Увы, мы ничего не нашли, попробуйте перезагрузить страницу.</div>
-      </BorderPanel>
-    );
-  }
+export const MovieSimilars = ({ data }: MovieSimilarsProps) => {
   return (
     <>
-      {data?.similarMovies && data?.similarMovies?.length > 0 && (
+      {data.similarMovies && data.similarMovies.length > 0 && (
         <BorderPanel title="Similar movies">
           <div className="overflow-auto">
             <ul className="flex gap-[15px] pb-[15px]">
-              {data?.similarMovies?.map((item) => (
-                <li className="duration-300 hover:opacity-50" key={item.id}>
+              {data.similarMovies.map((item) => (
+                <li className="duration-300 hover:opacity-50" key={`similar-${item.id}`}>
                   <Link
                     className="flex flex-col gap-[5px]"
                     href={ROUTER_PATH.MOVIE + `/${item.id}`}

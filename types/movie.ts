@@ -1,8 +1,9 @@
 export interface TMovieSearch {
-  docs: Movie[];
+  docs: IMovie[];
 }
 
-interface Movie {
+export interface IMovie {
+  videos: Video;
   id: number;
   name: string;
   logo: { url: string };
@@ -16,6 +17,18 @@ interface Movie {
   genres: Genre[];
   persons: Person[];
   similarMovies?: SimilarMovie[];
+}
+
+export interface Video {
+  trailers: Trailer[];
+}
+
+export interface Trailer {
+  url: string;
+  name: string;
+  site: 'youtube';
+  size: number;
+  type: 'TRAILER';
 }
 
 interface Country {

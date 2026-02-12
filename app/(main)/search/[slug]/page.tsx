@@ -23,7 +23,7 @@ export default async function SearchPage({ params }: Props) {
 
   await queryClient.prefetchQuery({
     queryKey: [MOVIE_SEARCH_QUERY_KEY, slug],
-    queryFn: () => MovieService().getMovieSearch(slug),
+    queryFn: () => MovieService().getMovie(slug),
   });
 
   return (
