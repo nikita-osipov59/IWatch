@@ -1,17 +1,14 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
+
 import { BorderPanel, Loading } from '@/components/common';
 import { MovieByGenre } from '@/components/features';
-import { Suspense } from 'react';
+import { formatTitle } from '@/utils/helpers';
 
 interface Props {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ page?: string }>;
 }
-
-const formatTitle = (slug: string) => {
-  const decoded = decodeURIComponent(slug);
-  return decoded.charAt(0).toUpperCase() + decoded.slice(1).toLowerCase();
-};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
