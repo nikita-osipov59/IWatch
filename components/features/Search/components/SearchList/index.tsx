@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { DataDocs } from '@/components/features/Search/store';
+import { TMovieSearch } from '@/types/movie';
 import { ROUTER_PATH } from '@/constants';
 
 interface ListProps {
-  data: DataDocs;
+  data: TMovieSearch;
 }
 
 export const SearchList = ({ data }: ListProps) => {

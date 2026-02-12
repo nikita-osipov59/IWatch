@@ -1,35 +1,12 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { useSearchStore } from '@/components/features/Search/store';
-import {
-  MOVIE_SEARCH_MUTATION_KEY,
-  MOVIE_SEARCH_QUERY_KEY,
-} from '@/components/features/Search/constants';
-import { ROUTER_PATH } from '@/constants';
-import { queryClient } from '@/api';
+import { MOVIE_SEARCH_QUERY_KEY } from '@/components/features/Search/constants';
+import { MovieService } from '@/app/service';
 
-export const useGetQueryMovieBySearch = () => {
-  const { getMovieBySearch, inputValue } = useSearchStore();
-  return useQuery({
-    queryKey: [...MOVIE_SEARCH_QUERY_KEY, inputValue],
-    queryFn: () => getMovieBySearch(inputValue),
+export const useGetQueryMovieBySearch = (query: string) => {
+  return useSuspenseQuery({
+    queryKey: [MOVIE_SEARCH_QUERY_KEY, query],
+    queryFn: () => MovieService().getMovie(query),
     refetchOnWindowFocus: false,
-  });
-};
-
-export const useGetMutationMovieBySearch = () => {
-  const { getMovieBySearch, inputValue } = useSearchStore();
-  const { push } = useRouter();
-
-  return useMutation({
-    mutationKey: MOVIE_SEARCH_MUTATION_KEY,
-    mutationFn: () => getMovieBySearch(inputValue),
-    onSuccess: () => {
-      push(`${ROUTER_PATH.SEARCH}/${inputValue}`);
-      queryClient.invalidateQueries({
-        queryKey: MOVIE_SEARCH_QUERY_KEY,
-      });
-    },
   });
 };

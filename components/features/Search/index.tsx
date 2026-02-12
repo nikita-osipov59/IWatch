@@ -1,18 +1,19 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { useSearchStore } from './store/useSearchStore';
-import { useGetMutationMovieBySearch } from './mutations';
+import { ROUTER_PATH } from '@/constants';
 
 export const Search = () => {
-  const { inputValue, setInputValue } = useSearchStore();
-  const { mutate } = useGetMutationMovieBySearch();
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputValue) {
-      mutate();
+    if (inputValue.trim()) {
+      router.push(`${ROUTER_PATH.SEARCH}/${inputValue.trim()}`);
     }
   };
 
