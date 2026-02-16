@@ -33,7 +33,8 @@ export const Movie = () => {
         <div className="flex max-w-[829px] flex-col gap-[15px]">
           <BorderPanel title="Description">{data.description}</BorderPanel>
           <MovieCast data={data} />
-          <MovieTrailer data={data} />
+          {data.videos !== undefined && <MovieTrailer data={data} />}
+
           <MovieSimilars data={data} />
         </div>
         <MovieInfoPanel data={data} />

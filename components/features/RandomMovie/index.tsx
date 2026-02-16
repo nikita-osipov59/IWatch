@@ -16,7 +16,9 @@ export const RandomMovie = () => {
   return (
     <div className="relative flex h-[500px] w-full items-center justify-start rounded-xl border border-border text-main">
       <div className="z-2 ml-10 flex max-w-[400px] flex-col gap-[15px]">
-        <Image src={data.logo.url} width={200} height={100} alt={data.name} />
+        {data.logo.url !== null && (
+          <Image src={data.logo.url} width={200} height={100} alt={data.name} />
+        )}
         <p>{data.name}</p>
         <div className="flex flex-wrap items-center gap-[5px]">
           <Image className="h-[25px] w-[50px]" src="/imdb.png" width={50} height={25} alt="imdb" />

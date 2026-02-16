@@ -1,4 +1,6 @@
-import { apiBase } from '@/api/config';
+import { apiBase, apiBaseNewVersion, apiBaseOld } from '@/api/config';
+import { RandomMovie, TopMovies } from '@/types';
+import { Genre } from '@/types/genres';
 import { IMovie, TMovieSearch } from '@/types/movie';
 
 export const MovieService = () => {
@@ -7,5 +9,20 @@ export const MovieService = () => {
 
   const getMovie = (id: string) => apiBase.get<IMovie>(`movie/${id}`).then((res) => res.data);
 
-  return { getMovieSearch, getMovie };
+  const getTopMovies = () =>
+    apiBaseNewVersion.get<TopMovies>('list/top250?limit=10').then((res) => res.data);
+
+  const getRandomMovie = () =>
+    apiBase
+      .get<RandomMovie>(
+        'movie/random?notNullFields=votes.imdb&notNullFields=ageRating&notNullFields=countries.name&notNullFields=backdrop.url',
+      )
+      .then((res) => res.data);
+
+  const getGenres = () =>
+    apiBaseOld
+      .get<Genre[]>('movie/possible-values-by-field?field=genres.name')
+      .then((res) => res.data);
+
+  return { getMovieSearch, getMovie, getTopMovies, getRandomMovie, getGenres };
 };

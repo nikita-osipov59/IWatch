@@ -1,68 +1,35 @@
-'use client';
+import { Suspense } from 'react';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
-import { Suspense, useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
+import { MOVIE_RANDOM_QUERY_KEY } from '@/components/features/RandomMovie/constants/keys';
+import { MOVIE_TOP250_QUERY_KEY } from '@/components/features/TopMovie/constants/keys';
+import { GENRES_QUERY_KEY } from '@/components/features/Genres/constants/keys';
+import { MovieService } from '@/app/service';
 import { Loading } from '@/components/common';
+import { HomeClient } from './HomeClient';
+import { queryClient } from '@/api';
 
-// * Возможно, нужно сделать по-другому
-
-const RandomMovie = dynamic(
-  () => import('@/components/features/RandomMovie').then((mod) => ({ default: mod.RandomMovie })),
-  {
-    ssr: false,
-    loading: () => null,
-  },
-);
-
-const TopMovie = dynamic(
-  () => import('@/components/features/TopMovie').then((mod) => ({ default: mod.TopMovie })),
-  {
-    ssr: false,
-    loading: () => null,
-  },
-);
-
-const Genres = dynamic(
-  () => import('@/components/features/Genres').then((mod) => ({ default: mod.Genres })),
-  {
-    ssr: false,
-    loading: () => null,
-  },
-);
-
-export default function Home() {
-  const [componentsLoaded, setComponentsLoaded] = useState(false);
-
-  useEffect(() => {
-    const preloadComponents = async () => {
-      try {
-        await Promise.all([
-          import('@/components/features/RandomMovie'),
-          import('@/components/features/TopMovie'),
-          import('@/components/features/Genres'),
-        ]);
-        setComponentsLoaded(true);
-      } catch (error) {
-        console.error('Failed to load components:', error);
-        setComponentsLoaded(true);
-      }
-    };
-
-    preloadComponents();
-  }, []);
-
-  if (!componentsLoaded) {
-    return <Loading position="center" />;
-  }
+export default async function HomePage() {
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: [MOVIE_RANDOM_QUERY_KEY],
+      queryFn: MovieService().getRandomMovie,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [MOVIE_TOP250_QUERY_KEY],
+      queryFn: MovieService().getTopMovies,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [GENRES_QUERY_KEY],
+      queryFn: MovieService().getGenres,
+    }),
+  ]);
 
   return (
-    <Suspense fallback={<Loading position="center" />}>
-      <main className="flex flex-col gap-[15px]">
-        <RandomMovie />
-        <TopMovie />
-        <Genres />
-      </main>
-    </Suspense>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Suspense fallback={<Loading position="center" />}>
+        <HomeClient />
+      </Suspense>
+    </HydrationBoundary>
   );
 }
