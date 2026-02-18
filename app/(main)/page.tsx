@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { Metadata } from 'next';
 
 import { MOVIE_RANDOM_QUERY_KEY } from '@/components/features/RandomMovie/constants/keys';
 import { MOVIE_TOP250_QUERY_KEY } from '@/components/features/TopMovie/constants/keys';
@@ -8,6 +9,10 @@ import { MovieService } from '@/app/service';
 import { Loading } from '@/components/common';
 import { HomeClient } from './HomeClient';
 import { queryClient } from '@/api';
+
+export const metadata: Metadata = {
+  title: 'Главная',
+};
 
 export default async function HomePage() {
   await Promise.all([

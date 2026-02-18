@@ -1,12 +1,6 @@
-import { Metadata } from 'next';
-
 import { BorderPanel, Footer, Header, UserPanelExtended } from '@/components/common';
 import { Search } from '@/components/features';
 import { getUser, getUserWithProfile } from '@/app/hooks';
-
-export const metadata: Metadata = {
-  title: 'Главная',
-};
 
 export default async function HomeLayout({
   children,
