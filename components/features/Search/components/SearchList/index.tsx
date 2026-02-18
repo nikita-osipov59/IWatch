@@ -13,9 +13,8 @@ type Params = {
 
 export const SearchList = () => {
   const params = useParams<Params>();
-  const slug = params.slug;
 
-  const { data } = useGetQueryMovieBySearch(slug);
+  const { data } = useGetQueryMovieBySearch(params.slug);
   return (
     <>
       {data.docs && (
