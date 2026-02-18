@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
 import { formatTitle } from '@/utils/helpers';
-import { BorderPanel } from '@/components/common';
-import { SearchClient } from './Search';
-import { MOVIE_SEARCH_QUERY_KEY } from '@/components/features/Search/constants';
 import { MovieService } from '@/app/service';
+import { MOVIE_SEARCH_QUERY_KEY } from '@/components/features/Search/constants';
+import { BorderPanel, Loading } from '@/components/common';
+import { SearchList } from '@/components/features/Search/components';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -28,9 +29,11 @@ export default async function SearchPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <BorderPanel title={formatTitle(slug)}>
-        <SearchClient />
-      </BorderPanel>
+      <Suspense fallback={<Loading position="center" />}>
+        <BorderPanel title={formatTitle(slug)}>
+          <SearchList />
+        </BorderPanel>
+      </Suspense>
     </HydrationBoundary>
   );
 }

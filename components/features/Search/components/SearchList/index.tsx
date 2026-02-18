@@ -1,14 +1,21 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { TMovieSearch } from '@/types/movie';
 import { ROUTER_PATH } from '@/constants';
+import { useGetQueryMovieBySearch } from '../../mutations';
+import { useParams } from 'next/navigation';
 
-interface ListProps {
-  data: TMovieSearch;
-}
+type Params = {
+  slug: string;
+};
 
-export const SearchList = ({ data }: ListProps) => {
+export const SearchList = () => {
+  const params = useParams<Params>();
+  const slug = params.slug;
+
+  const { data } = useGetQueryMovieBySearch(slug);
   return (
     <>
       {data.docs && (
