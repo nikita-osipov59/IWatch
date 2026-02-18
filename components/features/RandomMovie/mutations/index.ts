@@ -12,6 +12,7 @@ export const useGetQueryRandomMovie = () => {
     queryKey: [MOVIE_RANDOM_QUERY_KEY],
     queryFn: () => MovieService().getRandomMovie(),
     refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 };
 

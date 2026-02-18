@@ -14,6 +14,7 @@ export default async function HomePage() {
     queryClient.prefetchQuery({
       queryKey: [MOVIE_RANDOM_QUERY_KEY],
       queryFn: MovieService().getRandomMovie,
+      staleTime: Infinity,
     }),
     queryClient.prefetchQuery({
       queryKey: [MOVIE_TOP250_QUERY_KEY],
