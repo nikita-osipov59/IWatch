@@ -13,8 +13,6 @@ export const RandomMovie = () => {
   const { data } = useGetQueryRandomMovie();
   const { mutate, isPending } = useGetMutationRandomMovie();
 
-  console.log(data);
-
   return (
     <div className="relative flex h-[500px] w-full items-center justify-start rounded-xl border border-border text-main">
       <div className="z-2 ml-10 flex max-w-[400px] flex-col gap-[15px]">
