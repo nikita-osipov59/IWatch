@@ -5,7 +5,7 @@ interface Country {
 export interface RandomMovie {
   id: number;
   name: string;
-  logo: { url: string };
+  logo?: { url: string };
   backdrop: { url: string };
   url: string;
   rating: { imdb: number };
