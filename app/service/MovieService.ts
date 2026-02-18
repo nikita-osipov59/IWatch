@@ -4,8 +4,10 @@ import { Genre } from '@/types/genres';
 import { IMovie, TMovieSearch } from '@/types/movie';
 
 export const MovieService = () => {
-  const getMovieSearch = (slug: string) =>
-    apiBase.get<TMovieSearch>(`movie/search?page=1&limit=20&query=${slug}`).then((res) => res.data);
+  const getMovieSearch = (query: string, pageNum: number) =>
+    apiBase
+      .get<TMovieSearch>(`movie/search?page=${pageNum}&limit=20&query=${query}`)
+      .then((res) => res.data);
 
   const getMovie = (id: string) => apiBase.get<IMovie>(`movie/${id}`).then((res) => res.data);
 

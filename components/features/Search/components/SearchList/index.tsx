@@ -5,21 +5,23 @@ import Image from 'next/image';
 
 import { ROUTER_PATH } from '@/constants';
 import { useGetQueryMovieBySearch } from '../../mutations';
-import { useParams } from 'next/navigation';
+import { Pagination } from '@/components/common';
 
-type Params = {
+type SearchListProps = {
   slug: string;
+  pageNum: number;
 };
 
-export const SearchList = () => {
-  const params = useParams<Params>();
+export const SearchList = ({ slug, pageNum }: SearchListProps) => {
+  const { data } = useGetQueryMovieBySearch(slug, pageNum);
 
-  const { data } = useGetQueryMovieBySearch(params.slug);
+  const sortedByRating = data.docs.sort((a, b) => (b.rating.kp || 0) - (a.rating.kp || 0));
+
   return (
-    <>
+    <div className="flex flex-col gap-[30px]">
       {data.docs && (
         <ul className="flex flex-wrap gap-[15px]">
-          {data.docs.map((item) => (
+          {sortedByRating.map((item) => (
             <li className="w-[200px]" key={item.id}>
               <Link className="flex flex-col gap-1.5" href={ROUTER_PATH.MOVIE + `/${item.id}`}>
                 <Image
@@ -38,6 +40,8 @@ export const SearchList = () => {
           ))}
         </ul>
       )}
-    </>
+
+      <Pagination totalPages={data.total} currentPage={data.page} />
+    </div>
   );
 };

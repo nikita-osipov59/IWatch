@@ -10,6 +10,7 @@ import { SearchList } from '@/components/features/Search/components';
 
 interface Props {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -17,8 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: formatTitle(slug) };
 }
 
-export default async function SearchPage({ params }: Props) {
+export default async function SearchPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { page = '1' } = await searchParams;
+  const pageNum = Math.max(1, parseInt(page));
 
   const queryClient = new QueryClient();
 
@@ -31,7 +34,7 @@ export default async function SearchPage({ params }: Props) {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Suspense fallback={<Loading position="center" />}>
         <BorderPanel title={formatTitle(slug)}>
-          <SearchList />
+          <SearchList slug={slug} pageNum={pageNum} />
         </BorderPanel>
       </Suspense>
     </HydrationBoundary>

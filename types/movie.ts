@@ -1,5 +1,9 @@
 export interface TMovieSearch {
   docs: IMovie[];
+  total: number;
+  limit: number;
+  page: number;
+  pages: number;
 }
 
 export interface IMovie {
@@ -9,7 +13,7 @@ export interface IMovie {
   logo: { url: string };
   backdrop: { url: string };
   url: string;
-  rating: { imdb: number };
+  rating: { kp: number };
   year: number;
   poster: { url: string };
   countries: Country[];
