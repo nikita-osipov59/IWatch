@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 
 import { useGetQueryPersonById } from './mutations';
-import { BorderPanel, Loading } from '@/components/common';
+import { BorderPanel } from '@/components/common';
 import { PersonMovie } from './components';
 
 type Params = {
@@ -22,19 +22,7 @@ const formatDate = (isoString: string) => {
 
 export const Person = () => {
   const params = useParams<Params>();
-  const { data, isPending, isError } = useGetQueryPersonById(params.id);
-
-  if (isPending) {
-    return <Loading position="center" />;
-  }
-
-  if (!data || isError) {
-    return (
-      <BorderPanel>
-        <div>Увы, мы ничего не нашли, попробуйте перезагрузить страницу.</div>
-      </BorderPanel>
-    );
-  }
+  const { data } = useGetQueryPersonById(params.id);
 
   return (
     <>

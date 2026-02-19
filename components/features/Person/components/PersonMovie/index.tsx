@@ -1,18 +1,24 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 import { BorderPanel } from '@/components/common';
-import { useGetPersonByIdStore } from '@/components/features/Person/store';
 import { ROUTER_PATH } from '@/constants';
+import { useGetQueryPersonById } from '@/components/features/Person/mutations';
+
+type Params = {
+  id: string;
+};
 
 export const PersonMovie = () => {
-  const { data } = useGetPersonByIdStore();
+  const params = useParams<Params>();
+  const { data } = useGetQueryPersonById(params.id);
 
   return (
     <BorderPanel title="Участие в фильмах">
       <ul className="flex flex-col gap-[15px]">
-        {data?.movies.map((item, index) => (
+        {data.movies.map((item, index) => (
           <Link
             className="rounded-xl border border-border p-[15px] duration-300 hover:border-primary"
             href={ROUTER_PATH.MOVIE + `/${item.id}`}

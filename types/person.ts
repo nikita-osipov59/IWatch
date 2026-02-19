@@ -1,7 +1,3 @@
-import { create } from 'zustand';
-
-import { apiBase } from '@/api/config';
-
 export interface BirthPlace {
   value: string;
 }
@@ -58,22 +54,3 @@ export interface IPerson {
   updatedAt: string;
   createdAt: string;
 }
-
-interface State {
-  getPersonById: (id: string) => Promise<IPerson>;
-  data: IPerson | null;
-}
-
-export const useGetPersonByIdStore = create<State>((set) => ({
-  data: null,
-  getPersonById: async (id) => {
-    try {
-      const response = await apiBase.get(`person/${id}`);
-
-      set(() => ({ data: response.data }));
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching person by id:', error);
-    }
-  },
-}));
