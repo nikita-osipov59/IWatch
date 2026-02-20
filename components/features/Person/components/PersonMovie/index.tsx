@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useMemo } from 'react';
 import Link from 'next/link';
 
 import { BorderPanel } from '@/components/common';
@@ -15,10 +16,15 @@ export const PersonMovie = () => {
   const params = useParams<Params>();
   const { data } = useGetQueryPersonById(params.id);
 
+  const sortedByRating = useMemo(
+    () => [...data.movies].sort((a, b) => (b.rating || 0) - (a.rating || 0)),
+    [data.movies],
+  );
+
   return (
     <BorderPanel title="Участие в фильмах">
       <ul className="flex flex-col gap-[15px]">
-        {data.movies.map((item, index) => (
+        {sortedByRating.map((item, index) => (
           <Link
             className="rounded-xl border border-border p-[15px] duration-300 hover:border-primary"
             href={ROUTER_PATH.MOVIE + `/${item.id}`}
