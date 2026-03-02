@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
 
+import { queryClient } from '@/api';
 import { formatTitle } from '@/utils/helpers';
 import { MovieService } from '@/app/service';
 import { MOVIE_SEARCH_QUERY_KEY } from '@/components/features/Search/constants';
@@ -22,8 +23,6 @@ export default async function SearchPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const { page = '1' } = await searchParams;
   const pageNum = Math.max(1, parseInt(page));
-
-  const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: [MOVIE_SEARCH_QUERY_KEY, slug],

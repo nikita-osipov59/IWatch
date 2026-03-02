@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
+import { queryClient } from '@/api';
 import { Movie } from '@/components/features';
 import { MovieService } from '@/app/service';
 import { MOVIE_QUERY_KEY } from '@/components/features/Movie/constants';
@@ -30,8 +31,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function MoviePage({ params }: Props) {
   const { id } = await params;
-
-  const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: [MOVIE_QUERY_KEY, id],
