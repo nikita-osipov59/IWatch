@@ -27,7 +27,7 @@ export const RandomMovie = () => {
         <div className="flex gap-2.5">
           <Link
             className="rounded-xl bg-primary p-[15px] duration-300 hover:brightness-80"
-            href={ROUTER_PATH.MOVIE + `/${data.id}`}
+            href={`${ROUTER_PATH.MOVIE}/${data.id}`}
           >
             <Play />
           </Link>

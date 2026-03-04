@@ -27,7 +27,7 @@ export const PersonMovie = () => {
         {sortedByRating.map((item, index) => (
           <Link
             className="rounded-xl border border-border p-[15px] duration-300 hover:border-primary"
-            href={ROUTER_PATH.MOVIE + `/${item.id}`}
+            href={`${ROUTER_PATH.MOVIE}/${item.id}`}
             key={index}
           >
             <li className="flex items-center justify-between">

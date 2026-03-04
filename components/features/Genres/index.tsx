@@ -15,7 +15,7 @@ export const Genres = () => {
           <li className="mb-[15px]" key={index}>
             <Link
               className="flex h-full items-center rounded-xl bg-black p-[40px]"
-              href={ROUTER_PATH.SELECTION + `/${item.name}`}
+              href={`${ROUTER_PATH.SELECTION}/${item.name}`}
             >
               {formatTitle(item.name)}
             </Link>

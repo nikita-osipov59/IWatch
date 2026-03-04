@@ -23,7 +23,7 @@ export const MovieByGenre = ({ slug, pageNum }: MovieByGenreProps) => {
         <ul className="flex flex-wrap gap-[15px]">
           {sortedMovies.map((item) => (
             <li className="w-[200px]" key={item.id}>
-              <Link className="flex flex-col gap-1.5" href={ROUTER_PATH.MOVIE + `/${item.id}`}>
+              <Link className="flex flex-col gap-1.5" href={`${ROUTER_PATH.MOVIE}/${item.id}`}>
                 <Image
                   className="h-[300px] rounded-xl"
                   src={

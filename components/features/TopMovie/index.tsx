@@ -17,7 +17,7 @@ export const TopMovie = () => {
           <li className="duration-300 hover:opacity-50" key={item.movie.id}>
             <Link
               className="flex flex-col gap-[5px]"
-              href={ROUTER_PATH.MOVIE + `/${item.movie.id}`}
+              href={`${ROUTER_PATH.MOVIE}/${item.movie.id}`}
             >
               <Image
                 className="h-[300px] w-[200px] max-w-[200px] rounded-xl"

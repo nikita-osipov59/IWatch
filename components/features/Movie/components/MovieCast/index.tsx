@@ -19,7 +19,7 @@ export const MovieCast = ({ data }: MovieCastProps) => {
               <Link
                 className="flex flex-col gap-[5px]"
                 key={`person-${index}`}
-                href={ROUTER_PATH.PERSON + `/${item.id}`}
+                href={`${ROUTER_PATH.PERSON}/${item.id}`}
               >
                 <Image
                   className="h-[200px] min-w-[130px] rounded-xl"
