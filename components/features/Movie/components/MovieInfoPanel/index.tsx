@@ -1,15 +1,21 @@
+import { useParams } from 'next/navigation';
+
 import { BorderPanel } from '@/components/common';
 import {
   movieInfoListIBoxtemsClasses,
   movieInfoListItemsClasses,
 } from '@/components/features/Movie/constants';
-import { IMovie } from '@/types/movie';
+import { useGetQueryMovieById } from '@/components/features/Movie/mutations';
 
-type MovieInfoPanelProps = {
-  data: IMovie;
+type Params = {
+  id: string;
 };
 
-export const MovieInfoPanel = ({ data }: MovieInfoPanelProps) => {
+export const MovieInfoPanel = () => {
+  const params = useParams<Params>();
+
+  const { data } = useGetQueryMovieById(params.id);
+
   return (
     <BorderPanel>
       <div className="flex h-fit max-w-[500px] flex-col gap-[15px]">

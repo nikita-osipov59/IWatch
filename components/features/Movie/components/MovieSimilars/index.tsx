@@ -1,15 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { BorderPanel } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
-import { IMovie } from '@/types/movie';
+import { useGetQueryMovieById } from '@/components/features/Movie/mutations';
 
-type MovieSimilarsProps = {
-  data: IMovie;
+type Params = {
+  id: string;
 };
 
-export const MovieSimilars = ({ data }: MovieSimilarsProps) => {
+export const MovieSimilars = () => {
+  const params = useParams<Params>();
+
+  const { data } = useGetQueryMovieById(params.id);
+
   return (
     <>
       {data.similarMovies && data.similarMovies.length > 0 && (

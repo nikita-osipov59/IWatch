@@ -1,11 +1,16 @@
 import { BorderPanel } from '@/components/common';
-import { IMovie } from '@/types/movie';
+import { useParams } from 'next/navigation';
+import { useGetQueryMovieById } from '@/components/features/Movie/mutations';
 
-type MovieTrailerProps = {
-  data: IMovie;
+type Params = {
+  id: string;
 };
 
-export const MovieTrailer = ({ data }: MovieTrailerProps) => {
+export const MovieTrailer = () => {
+  const params = useParams<Params>();
+
+  const { data } = useGetQueryMovieById(params.id);
+
   return (
     <>
       {data.videos.trailers[0].url && (
