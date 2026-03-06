@@ -2,6 +2,7 @@ import { apiBase, apiBaseNewVersion, apiBaseOld } from '@/api/config';
 import {
   IMovieByIdResponse,
   IMovieBySearchResponse,
+  IMovieListResponse,
   IRandomMovieResponse,
   ITopMoviesResponse,
   IGenreResponse,
@@ -21,6 +22,24 @@ export const MovieService = () => {
 
   const getMovieById = async (id: string): Promise<IMovieByIdResponse> => {
     const { data } = await apiBase.get<IMovieByIdResponse>(`movie/${id}`);
+    return data;
+  };
+
+  const getMovieList = async (
+    limit?: number,
+    cursor?: string | null,
+  ): Promise<IMovieListResponse> => {
+    const query = new URLSearchParams({
+      limit: limit?.toString() || '20',
+    });
+
+    if (cursor) {
+      query.append('next', cursor);
+    }
+
+    const { data } = await apiBaseNewVersion.get<IMovieListResponse>(
+      `/movie?${query}&${NotNullFields}`,
+    );
     return data;
   };
 
@@ -44,6 +63,7 @@ export const MovieService = () => {
   return {
     getMovieBySearch,
     getMovieById,
+    getMovieList,
     getTopMovies,
     getRandomMovie,
     getGenres,

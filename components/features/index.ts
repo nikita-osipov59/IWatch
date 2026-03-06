@@ -10,6 +10,7 @@ export * from './Profile';
 export * from './Person';
 export * from './Genres';
 export * from './MovieByGenre';
+export * from './InfiniteMovieList';
 export * from './UpdatePasswordForm';
 export * from './Settings/SettingsList';
 export * from './Settings/SettingsSecurity';
