@@ -6,7 +6,7 @@ import { MovieService } from '@/app/service';
 export const useGetQueryMovieBySearch = (query: string, pageNum: number) => {
   return useSuspenseQuery({
     queryKey: [MOVIE_SEARCH_QUERY_KEY, query, pageNum],
-    queryFn: () => MovieService().getMovieSearch(query, pageNum),
+    queryFn: () => MovieService().getMovieBySearch(query, pageNum),
     refetchOnWindowFocus: false,
   });
 };

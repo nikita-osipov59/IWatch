@@ -2,7 +2,7 @@ interface Country {
   name: string;
 }
 
-export interface RandomMovie {
+export interface IRandomMovieResponse {
   id: number;
   name: string;
   logo?: { url: string };

@@ -15,7 +15,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const { id } = await params;
-    const { name, description } = await MovieService().getMovie(id);
+    const { name, description } = await MovieService().getMovieById(id);
 
     return {
       title: name,
@@ -34,7 +34,7 @@ export default async function MoviePage({ params }: Props) {
 
   await queryClient.prefetchQuery({
     queryKey: [MOVIE_QUERY_KEY, id],
-    queryFn: () => MovieService().getMovie(id),
+    queryFn: () => MovieService().getMovieById(id),
   });
 
   return (

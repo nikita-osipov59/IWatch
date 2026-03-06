@@ -1,42 +1,49 @@
 import { apiBase, apiBaseNewVersion, apiBaseOld } from '@/api/config';
+import {
+  IMovieByIdResponse,
+  IMovieBySearchResponse,
+  IRandomMovieResponse,
+  ITopMoviesResponse,
+  IGenreResponse,
+} from '@/types';
 import { NotNullFields } from '@/constants';
-import { RandomMovie, TopMovies } from '@/types';
-import { Genre } from '@/types/genres';
-import { IMovie, TMovieSearch } from '@/types/movie';
 
 export const MovieService = () => {
-  const getMovieSearch = async (query: string, pageNum: number): Promise<TMovieSearch> => {
-    const { data } = await apiBase.get<TMovieSearch>(
+  const getMovieBySearch = async (
+    query: string,
+    pageNum: number,
+  ): Promise<IMovieBySearchResponse> => {
+    const { data } = await apiBase.get<IMovieBySearchResponse>(
       `movie/search?page=${pageNum}&limit=20&query=${query}`,
     );
     return data;
   };
 
-  const getMovie = async (id: string): Promise<IMovie> => {
-    const { data } = await apiBase.get<IMovie>(`movie/${id}`);
+  const getMovieById = async (id: string): Promise<IMovieByIdResponse> => {
+    const { data } = await apiBase.get<IMovieByIdResponse>(`movie/${id}`);
     return data;
   };
 
-  const getTopMovies = async (): Promise<TopMovies> => {
-    const { data } = await apiBaseNewVersion.get<TopMovies>('list/top250?limit=10');
+  const getTopMovies = async (): Promise<ITopMoviesResponse> => {
+    const { data } = await apiBaseNewVersion.get<ITopMoviesResponse>('list/top250?limit=10');
     return data;
   };
 
-  const getRandomMovie = async (): Promise<RandomMovie> => {
-    const { data } = await apiBase.get<RandomMovie>(`movie/random?${NotNullFields}`);
+  const getRandomMovie = async (): Promise<IRandomMovieResponse> => {
+    const { data } = await apiBase.get<IRandomMovieResponse>(`movie/random?${NotNullFields}`);
     return data;
   };
 
-  const getGenres = async (): Promise<Genre[]> => {
-    const { data } = await apiBaseOld.get<Genre[]>(
+  const getGenres = async (): Promise<IGenreResponse[]> => {
+    const { data } = await apiBaseOld.get<IGenreResponse[]>(
       'movie/possible-values-by-field?field=genres.name',
     );
     return data;
   };
 
   return {
-    getMovieSearch,
-    getMovie,
+    getMovieBySearch,
+    getMovieById,
     getTopMovies,
     getRandomMovie,
     getGenres,

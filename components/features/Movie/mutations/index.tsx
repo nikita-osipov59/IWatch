@@ -6,7 +6,7 @@ import { MovieService } from '@/app/service';
 export const useGetQueryMovieById = (id: string) => {
   return useSuspenseQuery({
     queryKey: [MOVIE_QUERY_KEY, id],
-    queryFn: () => MovieService().getMovie(id),
+    queryFn: () => MovieService().getMovieById(id),
     refetchOnWindowFocus: false,
   });
 };

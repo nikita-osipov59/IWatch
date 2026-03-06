@@ -1,12 +1,12 @@
-export interface TMovieSearch {
-  docs: IMovie[];
+export interface IMovieBySearchResponse {
+  docs: IMovieByIdResponse[];
   total: number;
   limit: number;
   page: number;
   pages: number;
 }
 
-export interface IMovie {
+export interface IMovieByIdResponse {
   videos: Video;
   id: number;
   name: string;
