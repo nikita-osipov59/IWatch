@@ -54,3 +54,103 @@ body {
 .error {
   @apply text-error;
 }
+
+/* Скрываем нативный checkbox */
+.peer {
+  appearance: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Checkbox на ::before лейбла */
+label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #666;
+  border-radius: 5px;
+  background: transparent;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+/* Активный чекбокс */
+.peer:checked + label::before {
+  background: #f50;
+  border-color: #f50;
+}
+
+/* Галочка */
+.peer:checked + label::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background-image: url('/Active-mark.svg');
+  background-repeat: no-repeat;
+  background-size: 14px 15px;
+  width: 14px;
+  height: 15px;
+}
+
+.group:hover label::before {
+  border-color: #f50;
+}
+
+/* Скрываем нативный radio */
+.peer {
+  appearance: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Radio круг на ::before */
+label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #666;
+  border-radius: 50%; /* ← круглый! */
+  background: transparent;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+/* Активный radio */
+.peer:checked + label::before {
+  background: #f50;
+  border-color: #f50;
+}
+
+/* Точка внутри */
+.peer:checked + label::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Hover */
+.group:hover label::before {
+  border-color: #f50;
+}

@@ -26,15 +26,25 @@ export const MovieService = () => {
   };
 
   const getMovieList = async (
-    limit?: number,
+    limit: string,
     cursor?: string | null,
+    genres: string[] = [],
+    types?: string | null,
   ): Promise<IMovieListResponse> => {
     const query = new URLSearchParams({
-      limit: limit?.toString() || '20',
+      limit: limit,
     });
 
     if (cursor) {
       query.append('next', cursor);
+    }
+
+    if (genres.length > 0) {
+      query.append('genres.name', genres.join(','));
+    }
+
+    if (types) {
+      query.append('type', types);
     }
 
     const { data } = await apiBaseNewVersion.get<IMovieListResponse>(

@@ -9,9 +9,14 @@ import { useInView } from 'react-intersection-observer';
 import { ROUTER_PATH } from '@/constants';
 import { Loading } from '@/components/common';
 import { useInfiniteMovieListQuery } from '@/components/features/InfiniteMovieList/mutations';
+import { useInfiniteMovieListFilterStore } from './components/InfiniteMovieListFilter/store';
 
 export const InfiniteMovieList = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteMovieListQuery();
+  const { selectedGenres, selectedType } = useInfiniteMovieListFilterStore();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteMovieListQuery(
+    selectedGenres,
+    selectedType,
+  );
   const { ref, inView } = useInView({ threshold: 0 });
 
   useEffect(() => {
