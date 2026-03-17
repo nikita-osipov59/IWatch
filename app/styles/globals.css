@@ -55,8 +55,13 @@ body {
   @apply text-error;
 }
 
-/* Скрываем нативный checkbox */
-.peer {
+.custom-input-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.custom-input-group input[type='checkbox'].peer {
   appearance: none;
   position: absolute;
   opacity: 0;
@@ -64,8 +69,7 @@ body {
   height: 0;
 }
 
-/* Checkbox на ::before лейбла */
-label::before {
+.custom-input-group input[type='checkbox'].peer + label::before {
   content: '';
   position: absolute;
   left: 0;
@@ -80,14 +84,12 @@ label::before {
   pointer-events: none;
 }
 
-/* Активный чекбокс */
-.peer:checked + label::before {
+.custom-input-group input[type='checkbox'].peer:checked + label::before {
   background: #f50;
   border-color: #f50;
 }
 
-/* Галочка */
-.peer:checked + label::after {
+.custom-input-group input[type='checkbox'].peer:checked + label::after {
   content: '';
   position: absolute;
   left: 3px;
@@ -101,12 +103,7 @@ label::before {
   height: 15px;
 }
 
-.group:hover label::before {
-  border-color: #f50;
-}
-
-/* Скрываем нативный radio */
-.peer {
+.custom-input-group input[type='radio'].peer {
   appearance: none;
   position: absolute;
   opacity: 0;
@@ -114,8 +111,7 @@ label::before {
   height: 0;
 }
 
-/* Radio круг на ::before */
-label::before {
+.custom-input-group input[type='radio'].peer + label::before {
   content: '';
   position: absolute;
   left: 0;
@@ -124,20 +120,18 @@ label::before {
   width: 20px;
   height: 20px;
   border: 2px solid #666;
-  border-radius: 50%; /* ← круглый! */
+  border-radius: 50%;
   background: transparent;
   transition: all 0.2s ease;
   pointer-events: none;
 }
 
-/* Активный radio */
-.peer:checked + label::before {
+.custom-input-group input[type='radio'].peer:checked + label::before {
   background: #f50;
   border-color: #f50;
 }
 
-/* Точка внутри */
-.peer:checked + label::after {
+.custom-input-group input[type='radio'].peer:checked + label::after {
   content: '';
   position: absolute;
   left: 6px;
@@ -150,7 +144,6 @@ label::before {
   pointer-events: none;
 }
 
-/* Hover */
-.group:hover label::before {
+.custom-input-group.group:hover label::before {
   border-color: #f50;
 }

@@ -8,7 +8,7 @@ export const InfiniteMovieListTypeFilter = () => {
   return (
     <ul className="absolute z-50 mt-[15px] flex w-max flex-col flex-wrap gap-[13px] rounded-xl border border-border bg-background p-[15px] shadow-xl">
       {listType.map((item, index) => (
-        <li key={index} className="group flex cursor-pointer items-center">
+        <li key={index} className="custom-input-group group flex cursor-pointer items-center">
           <input
             id={`type-${index}`}
             className="peer sr-only"
