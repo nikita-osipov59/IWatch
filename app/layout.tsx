@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fira_Code } from 'next/font/google';
+import { Fira_Code, Geist } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 
 import { Analytics } from '@vercel/analytics/next';
@@ -8,6 +8,9 @@ import '@/styles/globals.css';
 
 import { SITE_DESCRIPTION, SITE_NAME } from '@/constants';
 import { TanstackProvider } from '@/providers';
+import { cn } from '@/lib/utils';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const firaCode = Fira_Code({
   variable: '--font-fira-code',
@@ -29,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" className={cn('font-sans', geist.variable)}>
       <body className={`${firaCode.variable} container antialiased`}>
         <TanstackProvider>
           <div className="h-screen">{children}</div>
