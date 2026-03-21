@@ -37,6 +37,7 @@
     "react-hot-toast": "^2.6.0",
     "react-intersection-observer": "^10.0.3",
     "react-ts-loaders": "^1.2.1",
+    "tailwind-merge": "^3.5.0",
     "zod": "^4.3.5",
     "zustand": "^5.0.9"
   },
