@@ -13,7 +13,7 @@ export const Rating = ({ data }: TRating) => {
   if (parts.length === 0) return null;
 
   return (
-    <span className="absolute top-2 right-2.5 flex gap-2 rounded-xl bg-primary p-0.75 px-3 text-xs text-white">
+    <span className="absolute top-1 right-1 flex gap-2 rounded-xl bg-primary p-0.75 px-3 text-xs">
       {parts.join(' | ')}
     </span>
   );
