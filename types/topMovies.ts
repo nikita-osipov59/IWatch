@@ -22,7 +22,7 @@ interface TopMoviesData {
 interface ITopMoviesDoc {
   position: number;
   positionDiff?: number;
-  rating: number;
+  rating: Rating;
   votes: number;
   movie: ITopMovie;
 }
@@ -38,17 +38,15 @@ interface ITopMovie {
     url: string;
     previewUrl?: string;
   };
-  rating?: {
-    kp?: number;
-    imdb?: number;
-    tmdb?: number;
-    filmCritics?: number;
-    russianFilmCritics?: number;
-    await?: number;
-  };
+  rating?: Rating;
 }
 
 interface ImageUrls {
   url: string;
   previewUrl?: string;
+}
+
+export interface Rating {
+  kp: number;
+  imdb: number;
 }

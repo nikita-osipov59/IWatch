@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useGetQueryTopMovie } from './mutations';
-import { BorderPanel } from '@/components/common';
+import { BorderPanel, Rating } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
 
 export const TopMovie = () => {
@@ -16,7 +16,7 @@ export const TopMovie = () => {
         {data.movies.docs.map((item) => (
           <li className="duration-300 hover:opacity-50" key={item.movie.id}>
             <Link
-              className="flex flex-col gap-[5px]"
+              className="relative flex flex-col gap-[5px]"
               href={`${ROUTER_PATH.MOVIE}/${item.movie.id}`}
             >
               <Image
@@ -27,6 +27,7 @@ export const TopMovie = () => {
                 alt={item.movie.name}
                 loading="lazy"
               />
+              {item.movie.rating && <Rating data={item.movie.rating} />}
               {item.movie.name}
             </Link>
           </li>
