@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServer } from './utils/supabase/server';
+import { createServerClient } from '@supabase/ssr';
 import { ROUTER_PATH } from './constants';
 
 const PUBLIC_PATHS = [
@@ -12,11 +12,30 @@ const PUBLIC_PATHS = [
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Создаём пустой ответ, который будем модифицировать (для установки кук)
   const response = NextResponse.next({
     request: { headers: request.headers },
   });
 
-  const supabase = await createServer();
+  // Создаём клиент Supabase с адаптером для middleware
+  const supabase = createServerClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!, {
+    cookies: {
+      getAll() {
+        // Берём все куки из запроса
+        return request.cookies.getAll().map((cookie) => ({
+          name: cookie.name,
+          value: cookie.value,
+        }));
+      },
+      setAll(cookiesToSet) {
+        // Устанавливаем куки в ответ
+        cookiesToSet.forEach(({ name, value, options }) => {
+          response.cookies.set(name, value, options);
+        });
+      },
+    },
+  });
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -31,6 +50,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(ROUTER_PATH.HOME, request.url));
   }
 
+  // Возвращаем ответ с обновлёнными куками (если были изменения)
   return response;
 }
 
