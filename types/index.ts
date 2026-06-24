@@ -4,3 +4,4 @@ export * from './randomMovie';
 export * from './topMovies';
 export * from './genres';
 export * from './movieList';
+export * from './rating';

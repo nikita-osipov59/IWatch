@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 
 import { ROUTER_PATH } from '@/constants';
-import { Loading } from '@/components/common';
+import { Loading, Rating } from '@/components/common';
 import { useInfiniteMovieListQuery } from '@/components/features/InfiniteMovieList/mutations';
 import { useInfiniteMovieListFilterStore } from './components/InfiniteMovieListFilter/store';
 
@@ -32,7 +32,10 @@ export const InfiniteMovieList = () => {
           <React.Fragment key={index}>
             {page.docs.map((movie) => (
               <li className="w-[200px]" key={movie.id}>
-                <Link className="flex flex-col gap-1.5" href={`${ROUTER_PATH.MOVIE}/${movie.id}`}>
+                <Link
+                  className="relative flex flex-col gap-1.5"
+                  href={`${ROUTER_PATH.MOVIE}/${movie.id}`}
+                >
                   <Image
                     className="h-[300px] rounded-xl"
                     src={
@@ -43,6 +46,14 @@ export const InfiniteMovieList = () => {
                     width={200}
                     height={300}
                   />
+                  {(movie.rating?.imdb || movie.rating?.kp) && (
+                    <Rating
+                      data={{
+                        imdb: movie.rating?.imdb,
+                        kp: movie.rating?.kp,
+                      }}
+                    />
+                  )}
                   {movie.name}
                 </Link>
               </li>
