@@ -23,15 +23,18 @@ export const Movie = () => {
           className="rounded-xl"
           width={1068}
           height={600}
-          src={data.backdrop.url}
+          src={
+            data.backdrop?.url ||
+            'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
+          }
           alt={data.name}
-          loading="lazy"
+          loading="eager"
         />
         <p className="mt-[13px] text-center text-[20px]">{data.name}</p>
       </BorderPanel>
       <div className="flex gap-[15px]">
         <div className="flex max-w-[829px] flex-col gap-[15px]">
-          <BorderPanel title="Description">{data.description}</BorderPanel>
+          {data.description && <BorderPanel title="Description">{data.description}</BorderPanel>}
           <MovieCast />
           {data.videos !== undefined && <MovieTrailer />}
 
