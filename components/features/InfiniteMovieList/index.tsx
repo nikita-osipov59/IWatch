@@ -46,14 +46,7 @@ export const InfiniteMovieList = () => {
                     width={200}
                     height={300}
                   />
-                  {(movie.rating?.imdb || movie.rating?.kp) && (
-                    <Rating
-                      data={{
-                        imdb: movie.rating?.imdb,
-                        kp: movie.rating?.kp,
-                      }}
-                    />
-                  )}
+                  {movie.rating && <Rating data={movie.rating} />}
                   {movie.name}
                 </Link>
               </li>
