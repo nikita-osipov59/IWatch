@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import { ROUTER_PATH } from '@/constants';
 import { useGetQueryMovieBySearch } from '@/components/features/Search/mutations';
-import { Pagination } from '@/components/common';
+import { Pagination, Rating } from '@/components/common';
 
 type SearchListProps = {
   slug: string;
@@ -20,7 +20,10 @@ export const SearchList = ({ slug, pageNum }: SearchListProps) => {
       <ul className="flex flex-wrap gap-[15px]">
         {data.docs.map((item) => (
           <li className="w-[200px]" key={item.id}>
-            <Link className="flex flex-col gap-1.5" href={`${ROUTER_PATH.MOVIE}/${item.id}`}>
+            <Link
+              className="relative flex flex-col gap-1.5"
+              href={`${ROUTER_PATH.MOVIE}/${item.id}`}
+            >
               <Image
                 className="h-[300px] rounded-xl"
                 src={
@@ -31,6 +34,7 @@ export const SearchList = ({ slug, pageNum }: SearchListProps) => {
                 width={200}
                 height={300}
               />
+              {item.rating && <Rating data={item.rating} />}
               {item.name}
             </Link>
           </li>
