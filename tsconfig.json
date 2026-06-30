@@ -23,7 +23,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/styles/*": ["./app/styles/*"],
-      "@/constants/*": ["./constants/"],
+      "@/constants/*": ["./constants/*"],
     }
   },
   "include": [

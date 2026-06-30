@@ -20,8 +20,6 @@ const schema = z.object({
 
 type RecoveryPasswordForm = z.infer<typeof schema>;
 
-// ? Возможно нужно переделать обработку ошибки от signIn
-
 export const RecoveryPasswordForm = () => {
   const { email, setEmail } = useGetAuthStore();
 

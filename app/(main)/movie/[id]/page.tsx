@@ -21,8 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: name,
       description: description,
     };
-  } catch (error) {
-    console.error('Metadata error:', error);
+  } catch {
     return {
       title: 'Movie not found',
     };

@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import { ROUTER_PATH } from '@/constants';
 import { Loading } from '@/components/common';
+import { normalizeUrl } from '@/utils/helpers';
 import { TProfile } from '@/types';
 
 export interface UserPanelProps {
@@ -28,7 +29,7 @@ export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
           {profile.avatar_url ? (
             <Image
               className="h-[30px] w-[30px] rounded-[50%]"
-              src={profile.avatar_url}
+              src={normalizeUrl(profile.avatar_url)}
               alt="avatar"
               width={30}
               height={30}
@@ -44,7 +45,7 @@ export const UserPanel = ({ user, profile, type }: UserPanelProps) => {
           {profile.avatar_url ? (
             <Image
               className="h-[30px] w-[30px] rounded-[50%]"
-              src={profile.avatar_url}
+              src={normalizeUrl(profile.avatar_url)}
               alt="avatar"
               width={30}
               height={30}

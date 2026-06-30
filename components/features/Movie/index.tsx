@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import { useGetQueryMovieById } from './mutations';
 import { BorderPanel } from '@/components/common';
+import { normalizeUrl } from '@/utils/helpers';
 import { MovieCast, MovieInfoPanel, MovieSimilars, MovieTrailer } from './components';
 
 type Params = {
@@ -24,7 +25,7 @@ export const Movie = () => {
           width={1068}
           height={600}
           src={
-            data.backdrop?.url ||
+            normalizeUrl(data.backdrop?.url) ||
             'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
           }
           alt={data.name}

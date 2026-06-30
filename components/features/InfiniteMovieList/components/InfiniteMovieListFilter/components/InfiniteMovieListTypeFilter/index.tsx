@@ -7,10 +7,10 @@ export const InfiniteMovieListTypeFilter = () => {
 
   return (
     <ul className="absolute z-50 mt-[15px] flex w-max flex-col flex-wrap gap-[13px] rounded-xl border border-border bg-background p-[15px] shadow-xl">
-      {listType.map((item, index) => (
-        <li key={index} className="custom-input-group group flex cursor-pointer items-center">
+      {listType.map((item) => (
+        <li key={item.type} className="custom-input-group group flex cursor-pointer items-center">
           <input
-            id={`type-${index}`}
+            id={`type-${item.type}`}
             className="peer sr-only"
             type="radio"
             value={item.name}
@@ -18,7 +18,7 @@ export const InfiniteMovieListTypeFilter = () => {
             onChange={() => selectType(item.type)}
           />
           <label
-            htmlFor={`type-${index}`}
+            htmlFor={`type-${item.type}`}
             className="relative w-full cursor-pointer rounded py-1 pl-8"
           >
             {formatTitle(item.name)}

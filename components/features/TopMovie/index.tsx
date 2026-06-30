@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useGetQueryTopMovie } from './mutations';
 import { BorderPanel, Rating } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
+import { normalizeUrl } from '@/utils/helpers';
 
 export const TopMovie = () => {
   const { data } = useGetQueryTopMovie();
@@ -23,7 +24,7 @@ export const TopMovie = () => {
                 className="h-[300px] w-[200px] max-w-[200px] rounded-xl"
                 width={200}
                 height={300}
-                src={item.movie.poster.url}
+                src={normalizeUrl(item.movie.poster.url)}
                 alt={item.movie.name}
                 loading="lazy"
               />

@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { BorderPanel } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
 import { useGetQueryMovieById } from '@/components/features/Movie/mutations';
+import { normalizeUrl } from '@/utils/helpers';
 
 type Params = {
   id: string;
@@ -23,7 +24,7 @@ export const MovieCast = () => {
             return (
               <Link
                 className="flex flex-col gap-[5px]"
-                key={`person-${index}`}
+                key={`${item.id}-${index}`}
                 href={`${ROUTER_PATH.PERSON}/${item.id}`}
               >
                 <Image
@@ -31,7 +32,7 @@ export const MovieCast = () => {
                   width={130}
                   height={200}
                   src={
-                    item.photo ||
+                    normalizeUrl(item.photo) ||
                     'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
                   }
                   alt={item.name || 'img'}

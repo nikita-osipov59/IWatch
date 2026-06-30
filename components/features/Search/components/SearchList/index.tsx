@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ROUTER_PATH } from '@/constants';
 import { useGetQueryMovieBySearch } from '@/components/features/Search/mutations';
 import { Pagination, Rating } from '@/components/common';
+import { normalizeUrl } from '@/utils/helpers';
 
 type SearchListProps = {
   slug: string;
@@ -27,7 +28,7 @@ export const SearchList = ({ slug, pageNum }: SearchListProps) => {
               <Image
                 className="h-[300px] rounded-xl"
                 src={
-                  item.poster?.url ||
+                  normalizeUrl(item.poster?.url) ||
                   'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
                 }
                 alt={item.name}

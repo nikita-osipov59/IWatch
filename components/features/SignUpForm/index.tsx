@@ -27,8 +27,6 @@ const schema = z.object({
 
 export type SignUpForm = z.infer<typeof schema>;
 
-// ? Возможно нужно переделать обработку ошибки от signUp
-
 export const SignUpForm = () => {
   const { email, setEmail } = useGetAuthStore();
 

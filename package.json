@@ -11,6 +11,8 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint-staged": "lint-staged",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "prepare": "husky"
   },
   "dependencies": {
@@ -21,14 +23,12 @@
     "@tanstack/react-query-devtools": "^5.101.1",
     "@vercel/analytics": "^2.0.1",
     "axios": "^1.18.1",
-    "baseline-browser-mapping": "^2.10.38",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "lucide-react": "^1.21.0",
     "next": "16.2.9",
-    "pre-commit": "^2.0.0",
     "prettier": "^3.8.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "react": "19.2.7",
@@ -43,6 +43,9 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^26.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -50,9 +53,11 @@
     "eslint-config-next": "16.2.9",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "jsdom": "^29.1.1",
     "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0"
+    "typescript-eslint": "^8.62.0",
+    "vitest": "^4.1.9"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

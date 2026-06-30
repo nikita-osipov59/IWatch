@@ -25,8 +25,8 @@ export default async function SearchPage({ params, searchParams }: Props) {
   const pageNum = Math.max(1, parseInt(page));
 
   await queryClient.prefetchQuery({
-    queryKey: [MOVIE_SEARCH_QUERY_KEY, slug],
-    queryFn: () => MovieService().getMovieById(slug),
+    queryKey: [MOVIE_SEARCH_QUERY_KEY, slug, pageNum],
+    queryFn: () => MovieService().getMovieBySearch(slug, pageNum),
   });
 
   return (

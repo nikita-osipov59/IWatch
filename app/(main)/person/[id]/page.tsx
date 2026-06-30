@@ -22,8 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: person.name,
     };
-  } catch (error) {
-    console.error('Metadata error:', error);
+  } catch {
     return {
       title: 'Person not found',
     };

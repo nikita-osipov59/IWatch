@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { ROUTER_PATH } from '@/constants';
 import { Loading, Rating } from '@/components/common';
+import { normalizeUrl } from '@/utils/helpers';
 import { useInfiniteMovieListQuery } from '@/components/features/InfiniteMovieList/mutations';
 import { useInfiniteMovieListFilterStore } from './components/InfiniteMovieListFilter/store';
 
@@ -29,7 +30,7 @@ export const InfiniteMovieList = () => {
     <div className="flex flex-col gap-[30px]">
       <ul className="flex flex-wrap gap-[15px]">
         {data?.pages.map((page, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={`page-${index}`}>
             {page.docs.map((movie) => (
               <li className="w-[200px]" key={movie.id}>
                 <Link
@@ -39,7 +40,7 @@ export const InfiniteMovieList = () => {
                   <Image
                     className="h-[300px] rounded-xl"
                     src={
-                      movie.poster?.url ||
+                      normalizeUrl(movie.poster?.url) ||
                       'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
                     }
                     alt={movie.name}

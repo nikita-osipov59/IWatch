@@ -10,7 +10,7 @@ export const RandomMovieCountries = () => {
   return (
     <ul className="flex">
       {data.countries.slice(0, 4).map((item, index) => {
-        return <li key={index}>{(index ? ', ' : '') + item.name}</li>;
+        return <li key={`${item.name}-${index}`}>{(index ? ', ' : '') + item.name}</li>;
       })}
     </ul>
   );

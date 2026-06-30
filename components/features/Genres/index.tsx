@@ -11,8 +11,8 @@ export const Genres = () => {
   return (
     <BorderPanel title="Genres">
       <ul className="flex gap-[15px] overflow-auto">
-        {data.map((item, index) => (
-          <li className="mb-[15px]" key={index}>
+        {data.map((item) => (
+          <li className="mb-[15px]" key={item.name}>
             <Link
               className="flex h-full items-center rounded-xl bg-black p-[40px]"
               href={`${ROUTER_PATH.SELECTION}/${item.name}`}

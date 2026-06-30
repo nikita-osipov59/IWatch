@@ -96,8 +96,7 @@ export const SettingsProfile = () => {
       if (hasSuccess) {
         reset();
       }
-    } catch (error) {
-      console.error('Update error:', error);
+    } catch {
       toast.error('Ошибка при обновлении');
     }
   };

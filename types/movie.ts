@@ -57,3 +57,30 @@ interface SimilarMovie {
   poster: { url: string };
   length: number;
 }
+
+export interface IMovieByGenreDoc {
+  id: number;
+  name: string;
+  alternativeName: string;
+  type: 'movie' | 'tv-series';
+  typeNumber: 1 | 2;
+  year: number | null;
+  description: string | null;
+  shortDescription: string | null;
+  status: string | null;
+  rating: { kp: number; imdb: number };
+  votes: { kp: number; imdb: number };
+  movieLength: number | null;
+  genres: Array<{ name: string }>;
+  countries: Array<{ name: string }>;
+  poster?: { url: string; previewUrl: string };
+  backdrop?: { url: string; previewUrl: string };
+}
+
+export interface IMovieByGenreResponse {
+  docs: IMovieByGenreDoc[];
+  total: number;
+  limit: number;
+  page: number;
+  pages: number;
+}

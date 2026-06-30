@@ -18,8 +18,6 @@ const schema = z.object({
 
 type UpdatePasswordForm = z.infer<typeof schema>;
 
-// ? Возможно нужно переделать обработку ошибки от signIn
-
 export const UpdatePasswordForm = () => {
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -42,14 +40,14 @@ export const UpdatePasswordForm = () => {
 
   return (
     <div className="flex min-h-[432px] items-center gap-[15px]">
-      <div className="flex h-[-webkit-fill-available] w-[300px] flex-col justify-center rounded-xl bg-[url(/welcomeBG.png)]">
+      <div className="flex h-full w-[300px] flex-col justify-center rounded-xl bg-[url(/welcomeBG.png)]">
         <p className="flex flex-col justify-center gap-[5px] text-center text-[20px]">
           Welcome to <span className="text-[30px] text-primary uppercase">IWatch</span>you can do
           more
         </p>
       </div>
       <form
-        className="flex h-[-webkit-fill-available] w-[300px] flex-col gap-[15px] rounded-xl border border-border p-[15px]"
+        className="flex h-full w-[300px] flex-col gap-[15px] rounded-xl border border-border p-[15px]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex justify-center text-foreground">Update your password</div>

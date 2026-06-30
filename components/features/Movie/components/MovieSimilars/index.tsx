@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 
 import { BorderPanel } from '@/components/common';
 import { ROUTER_PATH } from '@/constants';
+import { normalizeUrl } from '@/utils/helpers';
 import { useGetQueryMovieById } from '@/components/features/Movie/mutations';
 
 type Params = {
@@ -31,7 +32,7 @@ export const MovieSimilars = () => {
                       className="h-[300px] w-[200px] max-w-[200px] rounded-xl"
                       width={200}
                       height={300}
-                      src={item.poster.url}
+                      src={normalizeUrl(item.poster.url)}
                       alt={item.name}
                       loading="lazy"
                     />

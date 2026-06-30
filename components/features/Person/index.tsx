@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useGetQueryPersonById } from './mutations';
 import { BorderPanel } from '@/components/common';
 import { PersonMovie } from './components';
+import { normalizeUrl } from '@/utils/helpers';
 
 type Params = {
   id: string;
@@ -31,7 +32,7 @@ export const Person = () => {
           <Image
             className="rounded-xl"
             src={
-              data.photo ||
+              normalizeUrl(data.photo) ||
               'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg'
             }
             alt={data.name}
@@ -47,7 +48,7 @@ export const Person = () => {
               <div className="flex flex-wrap">
                 <p className="mr-[5px] text-accent">Карьера:</p>
                 {data.profession.slice(0, 7).map((item, index) => (
-                  <div className="text-main" key={index}>
+                  <div className="text-main" key={`${item.value}-${index}`}>
                     {(index ? ', ' : '') + item.value}
                   </div>
                 ))}
@@ -69,7 +70,7 @@ export const Person = () => {
                 <p className="mr-[5px] text-accent">Место рождения:</p>
                 {data.birthPlace.slice(0, 4).map((item, index) => {
                   return (
-                    <div className="text-main" key={index}>
+                    <div className="text-main" key={`${item.value}-${index}`}>
                       {(index ? ', ' : '') + item.value}
                     </div>
                   );

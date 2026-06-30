@@ -1,6 +1,7 @@
 import { apiBase, apiBaseNewVersion, apiBaseOld } from '@/api/config';
 import {
   IMovieByIdResponse,
+  IMovieByGenreResponse,
   IMovieBySearchResponse,
   IMovieListResponse,
   IRandomMovieResponse,
@@ -63,6 +64,13 @@ export const MovieService = () => {
     return data;
   };
 
+  const getMovieByGenre = async (slug: string, pageNum: number): Promise<IMovieByGenreResponse> => {
+    const { data } = await apiBase.get<IMovieByGenreResponse>(
+      `movie?page=${pageNum}&limit=15&notNullFields=name&genres.name=${slug}`,
+    );
+    return data;
+  };
+
   const getGenres = async (): Promise<IGenreResponse[]> => {
     const { data } = await apiBaseOld.get<IGenreResponse[]>(
       'movie/possible-values-by-field?field=genres.name',
@@ -76,6 +84,7 @@ export const MovieService = () => {
     getMovieList,
     getTopMovies,
     getRandomMovie,
+    getMovieByGenre,
     getGenres,
   };
 };

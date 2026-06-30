@@ -6,6 +6,7 @@ export type TProfile = {
   email: string;
   description?: string | null;
   avatar_url?: string | null;
+  background_url?: string;
   theme: 'light' | 'dark' | 'system';
   is_public: boolean;
   created_at: string;

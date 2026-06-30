@@ -1,15 +1,12 @@
 import Link from 'next/link';
 
-import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
-
 import { ROUTER_PATH } from '@/constants';
 
-export interface ReminderProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+interface ReminderProps {
   view: 'Registration' | 'Login' | 'Remember' | 'Forgot';
 }
 
-export const Reminder: React.FC<ReminderProps> = ({ view }) => {
+export const Reminder = ({ view }: ReminderProps) => {
   return (
     <>
       {view === 'Registration' && (

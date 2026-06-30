@@ -10,8 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
       title: userWithProfile.username,
     };
-  } catch (error) {
-    console.error('Metadata error:', error);
+  } catch {
     return {
       title: 'Profile not found',
     };

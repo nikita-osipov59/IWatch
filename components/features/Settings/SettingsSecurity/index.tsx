@@ -103,8 +103,7 @@ export const SettingsSecurity = ({ user }: TUser) => {
         reset();
         signOut();
       }
-    } catch (error) {
-      console.error('Update error:', error);
+    } catch {
       toast.error('Ошибка при обновлении');
     }
   };
@@ -121,7 +120,7 @@ export const SettingsSecurity = ({ user }: TUser) => {
     <BorderPanel className="w-fit" classNameTitle="text-[24px] text-main" title="Security Details">
       <div className="flex flex-col gap-[15px]">
         <div className="flex w-fit rounded-xl border border-border bg-background-info">
-          {buttonList.map((item, index) => {
+          {buttonList.map((item) => {
             return (
               <button
                 onClick={() => setMode(item.mode)}
@@ -130,7 +129,7 @@ export const SettingsSecurity = ({ user }: TUser) => {
                     ? 'bg-primary text-white shadow-md'
                     : 'hover:cursor-pointer hover:text-primary'
                 }`}
-                key={index}
+                key={item.mode}
               >
                 {item.title}
               </button>

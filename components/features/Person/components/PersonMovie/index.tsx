@@ -28,7 +28,7 @@ export const PersonMovie = () => {
           <Link
             className="rounded-xl border border-border p-[15px] duration-300 hover:border-primary"
             href={`${ROUTER_PATH.MOVIE}/${item.id}`}
-            key={index}
+            key={`${item.id}-${index}`}
           >
             <li className="flex items-center justify-between">
               <div className="flex w-[420px] flex-col gap-[5px]">
